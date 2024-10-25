@@ -26,6 +26,20 @@
   <link rel="stylesheet" href="{{asset('/')}}backend/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('/')}}backend/plugins/summernote/summernote-bs4.min.css">
+
+  <!--toastr-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" 
+     href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    <!--line awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css"/>
+
+    <!--sweet alert-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -49,7 +63,7 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="{{asset('/')}}backend/plugins/jquery/jquery.min.js"></script>
+<!-- <script src="{{asset('/')}}backend/plugins/jquery/jquery.min.js"></script> -->
 <!-- jQuery UI 1.11.4 -->
 <script src="{{asset('/')}}backend/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -81,5 +95,71 @@
 <!-- AdminLTE for demo purposes -->
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('/')}}backend/dist/js/pages/dashboard.js"></script>
+
+<!--toastr-->
+<script>
+  @if(Session::has('message'))
+  toastr.options =
+  {
+    "closeButton" : true,
+    "progressBar" : true
+  }
+      toastr.success("{{ session('message') }}");
+  @endif
+
+  @if(Session::has('error'))
+  toastr.options =
+  {
+    "closeButton" : true,
+    "progressBar" : true
+  }
+      toastr.error("{{ session('error') }}");
+  @endif
+
+  @if(Session::has('info'))
+  toastr.options =
+  {
+    "closeButton" : true,
+    "progressBar" : true
+  }
+      toastr.info("{{ session('info') }}");
+  @endif
+
+  @if(Session::has('warning'))
+  toastr.options =
+  {
+    "closeButton" : true,
+    "progressBar" : true
+  }
+      toastr.warning("{{ session('warning') }}");
+  @endif
+</script>
+<!--toastr end-->
+
+<!--sweet alert-->
+<script>
+        function confirmation(ev)
+        {
+
+            ev.preventDefault();
+            var urlToRedirect = ev.currentTarget.getAttribute('href');
+
+                swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this  file!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    window.location.href=urlToRedirect;
+                }
+                });
+
+
+        }
+   </script>
+<!--sweet alert end-->
 </body>
 </html>

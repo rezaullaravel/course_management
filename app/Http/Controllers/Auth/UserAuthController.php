@@ -33,12 +33,7 @@ class UserAuthController extends Controller
         ]);
  
         if(Auth::attempt(['email'=>$request->email,'password'=>$request->password])){
-            $user = Auth::user();
-            if($user->role=='1'){
-                return redirect('/admin/dashboard');
-            } else {
-                return redirect('/user/dashboard');
-            }
+            return redirect('/admin/dashboard');
         } else {
             return redirect()->back()->with('error_message','Oops!Your credentials do not match our records. Please try again.');
         }
@@ -50,17 +45,7 @@ class UserAuthController extends Controller
         return view('admin.home.index');
     }//end method
 
-    //user dashboard
-    public function userDashboard(){
-        return view('admin.home.index');
-    }//end method
-
-    //user logout
-    public function logout(){
-        Auth::logout();
-        return redirect('/');
-    }
-
+    
     //admin logout
     public function adminLogout(){
         Auth::logout();

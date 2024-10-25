@@ -18,58 +18,35 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           
           <li class="nav-item menu-open">
-           @if (Auth::user()->role=='1')
               <a href="{{url('admin/dashboard')}}" class="nav-link {{request()->is('admin/dashboard') ? 'active':''}}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
               </p>
             </a>
-           @else
-              <a href="{{url('user/dashboard')}}" class="nav-link {{request()->is('user/dashboard') ? 'active':''}}">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-              </p>
-            </a>
-           @endif
           </li>
 
+         {{--permission--}}
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{route('admin.permission.index')}}" class="nav-link {{request()->is('admin/permission*') ? 'active':''}}">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
-                Charts
-                <i class="right fas fa-angle-left"></i>
+                Permission
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>ChartJS</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/charts/flot.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Flot</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/charts/inline.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inline</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/charts/uplot.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>uPlot</p>
-                </a>
-              </li>
-            </ul>
           </li>
+        {{--permission--}}
+
+         {{--role--}}
+          <li class="nav-item">
+            <a href="{{route('admin.role.index')}}" class="nav-link {{request()->is('admin/role*') ? 'active':''}}">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                Role
+              </p>
+            </a>
+          </li>
+        {{--role--}}
 
           {{--setting--}}
           <li class="nav-item">
@@ -82,17 +59,10 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                @if (Auth::user()->role=='1')
                   <a href="{{route('admin.logout')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Logout</p>
                 </a>
-                @else
-                  <a href="{{route('user.logout')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Logout</p>
-                </a>
-                @endif
               </li>
             </ul>
           </li>
