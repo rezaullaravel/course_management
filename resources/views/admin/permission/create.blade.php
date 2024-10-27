@@ -11,7 +11,7 @@
             <div class="card">
               <div class="card-header">
                 <h4>Permission Create
-                  <a href="{{route('admin.permission.index')}}" class="btn btn-primary" style="float:right;">Back</a>
+                  <a href="{{route('admin.permission.index')}}" class="btn btn-primary btn-sm" style="float:right;">Back</a>
                 </h4>
               </div>
 
@@ -27,7 +27,7 @@
                   </div>
 
                   <div class="form-group">
-                    <input type="submit" value="Submit" class="btn btn-success" style="float:right;">
+                    <input type="submit" value="Submit" class="btn btn-primary btn-sm" style="float:right;">
                   </div>
                 </form>
               </div>

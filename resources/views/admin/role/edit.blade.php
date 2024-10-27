@@ -11,7 +11,7 @@
             <div class="card">
               <div class="card-header">
                 <h4>Role Edit
-                  <a href="{{route('admin.role.index')}}" class="btn btn-primary" style="float:right;">Back</a>
+                  <a href="{{route('admin.role.index')}}" class="btn btn-primary btn-sm" style="float:right;">Back</a>
                 </h4>
               </div>
 
@@ -27,7 +27,19 @@
                   </div>
 
                   <div class="form-group">
-                    <input type="submit" value="Update" class="btn btn-success" style="float:right;">
+                    <label>Assign Permission</label>
+                    <div class="row">
+                       @foreach ($permissions as $permission)
+                        <div class="col-md-3">
+                          <input type="checkbox" name="permissions[]" value="{{$permission->name}}" {{ in_array($permission->name, $rolePermissions) ? 'checked' : '' }}>
+                          <label class="form-check-label">{{$permission->name}}</label>
+                        </div>
+                      @endforeach
+                    </div>
+                   </div>
+
+                  <div class="form-group">
+                    <input type="submit" value="Update" class="btn btn-primary btn-sm" style="float:right;">
                   </div>
                 </form>
               </div>

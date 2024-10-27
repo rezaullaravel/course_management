@@ -18,7 +18,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           
           <li class="nav-item menu-open">
-              <a href="{{url('admin/dashboard')}}" class="nav-link {{request()->is('admin/dashboard') ? 'active':''}}">
+              <a href="{{url('user/dashboard')}}" class="nav-link {{request()->is('user/dashboard') ? 'active':''}}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -26,7 +26,21 @@
             </a>
           </li>
 
+          {{--user--}}
+          @if(auth()->user()->can('view user'))
+          <li class="nav-item">
+            <a href="{{route('admin.user.index')}}" class="nav-link {{request()->is('admin/user*') ? 'active':''}}">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                User
+              </p>
+            </a>
+          </li>
+          @endif
+        {{--user--}}
+
          {{--permission--}}
+         @if(auth()->user()->can('view permission'))
           <li class="nav-item">
             <a href="{{route('admin.permission.index')}}" class="nav-link {{request()->is('admin/permission*') ? 'active':''}}">
               <i class="nav-icon fas fa-chart-pie"></i>
@@ -35,9 +49,11 @@
               </p>
             </a>
           </li>
+          @endif
         {{--permission--}}
 
          {{--role--}}
+         @if(auth()->user()->can('view role'))
           <li class="nav-item">
             <a href="{{route('admin.role.index')}}" class="nav-link {{request()->is('admin/role*') ? 'active':''}}">
               <i class="nav-icon fas fa-chart-pie"></i>
@@ -46,6 +62,7 @@
               </p>
             </a>
           </li>
+          @endif
         {{--role--}}
 
           {{--setting--}}
@@ -59,7 +76,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                  <a href="{{route('admin.logout')}}" class="nav-link">
+                  <a href="{{route('user.logout')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Logout</p>
                 </a>

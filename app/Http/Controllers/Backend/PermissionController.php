@@ -5,9 +5,32 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class PermissionController extends Controller
+class PermissionController extends Controller implements HasMiddleware
 {
+    //for laravel 10 and older version
+    // function __construct()
+    // {
+    //      $this->middleware('permission:view permission', ['only' => ['index']]);
+    //      $this->middleware('permission:create permission', ['only' => ['create','store']]);
+    //      $this->middleware('permission:edit permission', ['only' => ['edit','update']]);
+    //      $this->middleware('permission:delete permission', ['only' => ['delete']]);
+    // }
+
+    public static function middleware(): array
+    {
+    return [
+       
+        
+        new Middleware(\Spatie\Permission\Middleware\PermissionMiddleware::using('view permission'), only:['index']),
+        new Middleware(\Spatie\Permission\Middleware\PermissionMiddleware::using('create permission'), only:['create','store']),
+        new Middleware(\Spatie\Permission\Middleware\PermissionMiddleware::using('edit permission'), only:['edit','update']),
+        new Middleware(\Spatie\Permission\Middleware\PermissionMiddleware::using('delete permission'), only:['delete']),
+    ];
+    }
+
     //persmission list
     public function index(){
         $permissions = Permission::all();

@@ -11,7 +11,9 @@
             <div class="card">
               <div class="card-header">
                 <h4>Permission List
-                  <a href="{{route('admin.permission.create')}}" class="btn btn-primary" style="float:right;">Create Permission</a>
+                @can('create permission')
+                 <a href="{{route('admin.permission.create')}}" class="btn btn-primary btn-sm" style="float:right;"><i class="las la-plus-square"></i>Create Permission</a> 
+                @endcan
                 </h4>
               </div>
 
@@ -21,7 +23,11 @@
                     <tr>
                       <th>Sl</th>
                       <th>Name</th>
-                      <th>Action</th>
+                       <th width="150">
+                          @if(auth()->user()->can('edit permission')||auth()->user()->can('delete permission'))
+                           Action
+                          @endif
+                        </th>
                     </tr>
                   </thead>
 
@@ -31,15 +37,17 @@
                       <td>{{$key+1}}</td>
                       <td>{{$row->name}}</td>
                       <td>
-                        <a href="{{route('admin.permission.edit',$row->id)}}" class="btn btn-primary btn-sm" title="edit">
+                        @can('edit permission')
+                         <a href="{{route('admin.permission.edit',$row->id)}}" class="btn btn-primary btn-sm" title="edit">
                           <i class="las la-pen"></i>
-                        </a>
+                        </a> 
+                        @endcan
 
-                        <a href="{{route('admin.permission.delete',$row->id)}}" class="btn btn-danger btn-sm" title="delete" onclick="confirmation(event)">
+                         @can('delete permission')
+                         <a href="{{route('admin.permission.delete',$row->id)}}" class="btn btn-danger btn-sm" title="delete" onclick="confirmation(event)">
                           <i class="las la-trash"></i>
-                        </a>
-
-                        
+                         </a>
+                        @endcan
                       </td>
                     </tr>
                     @endforeach

@@ -11,7 +11,10 @@
             <div class="card">
               <div class="card-header">
                 <h4>Role List
-                  <a href="{{route('admin.role.create')}}" class="btn btn-primary" style="float:right;">Create Role</a>
+                  
+                  @can('create role')
+                   <a href="{{route('admin.role.create')}}" class="btn btn-primary btn-sm" style="float:right;"><i class="las la-plus-square"></i>Create Role</a> 
+                  @endcan
                 </h4>
               </div>
 
@@ -21,7 +24,13 @@
                     <tr>
                       <th>Sl</th>
                       <th>Name</th>
-                      <th>Action</th>
+                      <th>Permission</th>
+                      
+                        <th width="150">
+                          @if(auth()->user()->can('edit role')||auth()->user()->can('delete role'))
+                           Action
+                          @endif
+                        </th>
                     </tr>
                   </thead>
 
@@ -30,16 +39,28 @@
                     <tr>
                       <td>{{$key+1}}</td>
                       <td>{{$row->name}}</td>
+                     
                       <td>
-                        <a href="{{route('admin.role.edit',$row->id)}}" class="btn btn-primary btn-sm" title="edit">
-                          Edit
-                        </a>
-
-                        <a href="{{route('admin.role.delete',$row->id)}}" class="btn btn-danger btn-sm" title="delete" onclick="confirmation(event)">
-                          Delete
-                        </a>
-
+                        <ul style="padding: 0;">
+                          @foreach ($row->permissions as $permission)
+                              <li style="float: left; margin-left:20px;">
+                                <span style="margin-right:15px;">{{ $permission->name }}</span>
+                              </li>
+                          @endforeach
+                        </ul>
+                      </td>
+                      <td>
                         
+                        @can('edit role')
+                          <a href="{{route('admin.role.edit',$row->id)}}" class="btn btn-primary btn-sm" title="edit">
+                          Edit
+                          </a>
+                        @endcan
+                        @can('delete role')
+                         <a href="{{route('admin.role.delete',$row->id)}}" class="btn btn-danger btn-sm" title="delete" onclick="confirmation(event)">
+                          Delete
+                         </a> 
+                        @endcan
                       </td>
                     </tr>
                     @endforeach

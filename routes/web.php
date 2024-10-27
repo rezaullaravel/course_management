@@ -3,6 +3,7 @@ use App\Http\Controllers\Auth\UserAuthController;
 use App\Http\Controllers\Frontend\FrontHomeController;
 use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Backend\RoleController;
+use App\Http\Controllers\Backend\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -14,17 +15,25 @@ Route::get('/login',[UserAuthController::class,'index']);
 Route::post('/login',[UserAuthController::class,'login'])->name('user.post.login');
 
 
-Route::middleware('admin')->prefix('admin')->group(function(){
+Route::middleware('admin')->prefix('user')->group(function(){
     //admin/user dashboard
-    Route::get('dashboard',[UserAuthController::class,'adminDashboard']);
+    Route::get('dashboard',[UserAuthController::class,'userDashboard']);
     //admin/user logout
-    Route::get('logout',[UserAuthController::class,'adminLogout'])->name('admin.logout');
+    Route::get('logout',[UserAuthController::class,'userLogout'])->name('user.logout');
 });
 
 /*=====================user admin authentication end========================== */
 
 /*=====================admin panel route========================== */
 Route::middleware('admin')->prefix('admin')->group(function(){
+    //user
+    Route::get('user/list',[UserController::class,'index'])->name('admin.user.index');
+    Route::get('user/create',[UserController::class,'create'])->name('admin.user.create');
+    Route::post('user/store',[UserController::class,'store'])->name('admin.user.store');
+    Route::get('user/edit/{id}',[UserController::class,'edit'])->name('admin.user.edit');
+    Route::post('user/update/{id}',[UserController::class,'update'])->name('admin.user.update');
+    Route::get('user/delete/{id}',[UserController::class,'delete'])->name('admin.user.delete');
+
     //permission
     Route::get('permission/list',[PermissionController::class,'index'])->name('admin.permission.index');
     Route::get('permission/create',[PermissionController::class,'create'])->name('admin.permission.create');
