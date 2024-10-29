@@ -65,6 +65,43 @@
           @endif
         {{--role--}}
 
+        {{--blog--}}
+        @if(auth()->user()->can('view-blog-category')||auth()->user()->can('view-blog'))
+        <li class="nav-item {{ request()->is('admin/blog*') ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link {{ request()->is('admin/blog*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-chart-pie"></i>
+                <p>
+                    Blog Management
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            @can('view-blog-category')
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{route('admin.blog-category.index')}}"
+                        class="nav-link {{ request()->is('admin/blog/category*') ? 'active' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Blog Category</p>
+                    </a>
+                </li>
+            </ul>
+            @endcan
+
+            @can('view-blog')
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{route('admin.blog-post.index')}}"
+                        class="nav-link {{ request()->is('admin/blog/post*') ? 'active' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Blog</p>
+                    </a>
+                </li>
+            </ul>
+            @endcan
+          </li>
+          @endif
+        {{--blog--}}
+
           {{--setting--}}
           <li class="nav-item">
             <a href="#" class="nav-link">
