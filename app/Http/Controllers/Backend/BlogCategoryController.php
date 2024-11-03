@@ -17,8 +17,8 @@ class BlogCategoryController extends Controller implements HasMiddleware
     public static function middleware(): array
     {
     return [
-       
-        
+
+
         new Middleware(\Spatie\Permission\Middleware\PermissionMiddleware::using('view-blog-category'), only:['index']),
         new Middleware(\Spatie\Permission\Middleware\PermissionMiddleware::using('create-blog-category'), only:['create','store']),
         new Middleware(\Spatie\Permission\Middleware\PermissionMiddleware::using('edit-blog-category'), only:['edit','update']),
@@ -83,6 +83,6 @@ class BlogCategoryController extends Controller implements HasMiddleware
         }
         $category->delete();
         return redirect('admin/blog/category/list')->with('message','Blog Category Deleted Successfully');
-         
+
     }//end method
 }

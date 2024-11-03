@@ -18,8 +18,8 @@ class BlogController extends Controller implements HasMiddleware
     public static function middleware(): array
     {
     return [
-       
-        
+
+
         new Middleware(\Spatie\Permission\Middleware\PermissionMiddleware::using('view-blog'), only:['index']),
         new Middleware(\Spatie\Permission\Middleware\PermissionMiddleware::using('create-blog'), only:['create','store']),
         new Middleware(\Spatie\Permission\Middleware\PermissionMiddleware::using('edit-blog'), only:['edit','update']),
@@ -30,7 +30,12 @@ class BlogController extends Controller implements HasMiddleware
 
     //blog list
     public function index(){
-        $blogs = Blog::where('user_id',Auth::user()->id)->orderBy('id','desc')->get();
+        if(Auth::user()->hasRole('admin')){
+            $blogs = Blog::orderBy('id','desc')->get();
+        } else {
+            $blogs = Blog::where('user_id',Auth::user()->id)->orderBy('id','desc')->get();
+        }
+
         return view('admin.blog.index',compact('blogs'));
     }//end method
 
@@ -42,7 +47,7 @@ class BlogController extends Controller implements HasMiddleware
 
     //store
     public function store(Request $request){
-        
+
          $request->validate([
             'blog_category_id' =>'required',
             'title' => 'required|unique:blogs,title',
@@ -123,8 +128,8 @@ class BlogController extends Controller implements HasMiddleware
         if(File::exists($blog->image)){
                 unlink($blog->image);
             }
-        $blog->delete(); 
-        return redirect('admin/blog/post/list')->with('message','Blog  Deleted Successfully');   
+        $blog->delete();
+        return redirect('admin/blog/post/list')->with('message','Blog  Deleted Successfully');
     }//end method
 
 
