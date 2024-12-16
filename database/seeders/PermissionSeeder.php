@@ -36,7 +36,7 @@ class PermissionSeeder extends Seeder
             'delete-blog',
             'edit-blog-status',
          ];
-         
+
          foreach ($permissions as $permission) {
               Permission::create(['name' => $permission]);
          }

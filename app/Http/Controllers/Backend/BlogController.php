@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 use App\Models\Blog;
-use App\Models\BlogCategory;
+use App\Models\Category;
 use Illuminate\Support\Str;
 use Auth;
 use Illuminate\Support\Facades\File;
@@ -41,7 +41,7 @@ class BlogController extends Controller implements HasMiddleware
 
     //create
     public function create(){
-        $categories = BlogCategory::get();
+        $categories = Category::get();
         return view('admin.blog.create',compact('categories'));
     }//end method
 
@@ -80,7 +80,7 @@ class BlogController extends Controller implements HasMiddleware
 
     //edit
     public function edit($id){
-        $categories = BlogCategory::get();
+        $categories = Category::get();
         $blog = Blog::find($id);
         return view('admin.blog.edit',compact('categories','blog'));
     }//end method

@@ -1,6 +1,6 @@
 @extends('admin.master')
 @section('title')
-    {{'Blog Category List'}}
+    {{'Category List'}}
 @endsection
 @section('content')
  <section class="content">
@@ -10,9 +10,9 @@
           <div class="col-sm-12">
             <div class="card">
               <div class="card-header">
-                <h4>Blog Category List
-                @can('create-blog-category')
-                 <a href="{{route('admin.blog-category.create')}}" class="btn btn-primary btn-sm" style="float:right;"><i class="las la-plus-square"></i>Create Category</a> 
+                <h4>Category List
+                @can('create-category')
+                 <a href="{{route('admin.category.create')}}" class="btn btn-primary btn-sm" style="float:right;"><i class="las la-plus-square"></i>Create Category</a>
                 @endcan
                 </h4>
               </div>
@@ -25,7 +25,7 @@
                       <th>Sl</th>
                       <th>Category Name</th>
                        <th width="150">
-                          @if(auth()->user()->can('edit-blog-category')||auth()->user()->can('delete-blog-category'))
+                          @if(auth()->user()->can('edit-category')||auth()->user()->can('delete-category'))
                            Action
                           @endif
                         </th>
@@ -38,14 +38,14 @@
                       <td>{{$key+1}}</td>
                       <td>{{$row->name}}</td>
                       <td>
-                        @can('edit-blog-category')
-                         <a href="{{route('admin.blog-category.edit',$row->id)}}" class="btn btn-primary btn-sm" title="edit">
+                        @can('edit-category')
+                         <a href="{{route('admin.category.edit',$row->id)}}" class="btn btn-primary btn-sm" title="edit">
                           <i class="las la-pen"></i>
-                        </a> 
+                        </a>
                         @endcan
 
-                         @can('delete-blog-category')
-                         <a href="{{route('admin.blog-category.delete',$row->id)}}" class="btn btn-danger btn-sm" title="delete" onclick="confirmation(event)">
+                         @can('delete-category')
+                         <a href="{{route('admin.category.delete',$row->id)}}" class="btn btn-danger btn-sm" title="delete" onclick="confirmation(event)">
                           <i class="las la-trash"></i>
                          </a>
                         @endcan
@@ -60,10 +60,10 @@
               </div>
             </div>
           </div>
-          
+
         </div>
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </section>
-    
+
 @endsection

@@ -12,7 +12,7 @@
               <div class="card-header">
                 <h4>Blog  List
                 @can('create-blog')
-                 <a href="{{route('admin.blog-post.create')}}" class="btn btn-primary btn-sm" style="float:right;"><i class="las la-plus-square"></i>Create Blog</a> 
+                 <a href="{{route('admin.blog-post.create')}}" class="btn btn-primary btn-sm" style="float:right;"><i class="las la-plus-square"></i>Create Blog</a>
                 @endcan
                 </h4>
               </div>
@@ -42,7 +42,7 @@
                    @foreach($blogs as $key => $row)
                     <tr>
                       <td>{{$key+1}}</td>
-                      <td>{{$row->category->name}}</td>
+                      <td>{{$row->category->name }}</td>
                       <td>{{$row->title}}</td>
                       <td>
                       	<img src="{{asset($row->image)}}" width="100" height="100">
@@ -62,21 +62,21 @@
                       	@if($row->status==1)
                       	 <a href="{{route('admin.blog-post.deactive',$row->id)}}" class="btn btn-success btn-sm" title="update status">
                           <i class="las la-arrow-up"></i>
-                        </a> 
+                        </a>
                       	@endif
 
                       	@if($row->status==0)
-                      	 <a href="{{route('admin.blog-post.active',$row->id)}}" class="btn btn-success btn-sm" title="update status">
+                      	 <a href="{{route('admin.blog-post.active',$row->id)}}" class="btn btn-danger btn-sm" title="update status">
                           <i class="las la-arrow-down"></i>
-                        </a> 
+                        </a>
                       	@endif
                       	@endcan
-                      	
+
 
                         @can('edit-blog')
                          <a href="{{route('admin.blog-post.edit',$row->id)}}" class="btn btn-primary btn-sm" title="edit">
                           <i class="las la-pen"></i>
-                        </a> 
+                        </a>
                         @endcan
 
                          @can('delete-blog')
@@ -95,10 +95,10 @@
               </div>
             </div>
           </div>
-          
+
         </div>
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </section>
-    
+
 @endsection

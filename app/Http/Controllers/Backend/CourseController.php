@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Models\Course;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Models\CourseCategory;
+use App\Models\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -41,7 +41,7 @@ class CourseController extends Controller implements HasMiddleware
 
      //create
      public function create(){
-        $categories = CourseCategory::all();
+        $categories = Category::all();
         return view('admin.course.create',compact('categories'));
 
      }//end method
@@ -82,7 +82,7 @@ class CourseController extends Controller implements HasMiddleware
 
      //edit
      public function edit($id){
-        $categories = CourseCategory::all();
+        $categories = Category::all();
         $course = Course::find($id);
         return view('admin.course.edit',compact('categories','course'));
      }//end method

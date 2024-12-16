@@ -6,7 +6,7 @@ use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Auth\UserAuthController;
 use App\Http\Controllers\Backend\CourseController;
 use App\Http\Controllers\Backend\PermissionController;
-use App\Http\Controllers\Backend\BlogCategoryController;
+use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CourseCategoryController;
 
 
@@ -50,13 +50,13 @@ Route::middleware('admin')->prefix('admin')->group(function(){
     Route::post('role/update/{id}',[RoleController::class,'update'])->name('admin.role.update');
     Route::get('role/delete/{id}',[RoleController::class,'delete'])->name('admin.role.delete');
 
-    //blog category
-    Route::get('blog/category/list',[BlogCategoryController::class,'index'])->name('admin.blog-category.index');
-    Route::get('blog/category/create',[BlogCategoryController::class,'create'])->name('admin.blog-category.create');
-    Route::post('blog/category/store',[BlogCategoryController::class,'store'])->name('admin.blog-category.store');
-    Route::get('blog/category/edit/{id}',[BlogCategoryController::class,'edit'])->name('admin.blog-category.edit');
-    Route::post('blog/category/update/{id}',[BlogCategoryController::class,'update'])->name('admin.blog-category.update');
-    Route::get('blog/category/delete/{id}',[BlogCategoryController::class,'delete'])->name('admin.blog-category.delete');
+    //category
+    Route::get('category/list',[CategoryController::class,'index'])->name('admin.category.index');
+    Route::get('category/create',[CategoryController::class,'create'])->name('admin.category.create');
+    Route::post('category/store',[CategoryController::class,'store'])->name('admin.category.store');
+    Route::get('category/edit/{id}',[CategoryController::class,'edit'])->name('admin.category.edit');
+    Route::post('category/update/{id}',[CategoryController::class,'update'])->name('admin.category.update');
+    Route::get('category/delete/{id}',[CategoryController::class,'delete'])->name('admin.category.delete');
 
     //blog
     Route::get('blog/post/list',[BlogController::class,'index'])->name('admin.blog-post.index');
@@ -73,12 +73,12 @@ Route::middleware('admin')->prefix('admin')->group(function(){
 
 
       //course category
-      Route::get('course/category/list',[CourseCategoryController::class,'index'])->name('admin.course-category.index');
-      Route::get('course/category/create',[CourseCategoryController::class,'create'])->name('admin.course-category.create');
-      Route::post('course/category/store',[CourseCategoryController::class,'store'])->name('admin.course-category.store');
-      Route::get('course/category/edit/{id}',[CourseCategoryController::class,'edit'])->name('admin.course-category.edit');
-      Route::post('course/category/update/{id}',[CourseCategoryController::class,'update'])->name('admin.course-category.update');
-      Route::get('course/category/delete/{id}',[CourseCategoryController::class,'delete'])->name('admin.course-category.delete');
+    //   Route::get('course/category/list',[CourseCategoryController::class,'index'])->name('admin.course-category.index');
+    //   Route::get('course/category/create',[CourseCategoryController::class,'create'])->name('admin.course-category.create');
+    //   Route::post('course/category/store',[CourseCategoryController::class,'store'])->name('admin.course-category.store');
+    //   Route::get('course/category/edit/{id}',[CourseCategoryController::class,'edit'])->name('admin.course-category.edit');
+    //   Route::post('course/category/update/{id}',[CourseCategoryController::class,'update'])->name('admin.course-category.update');
+    //   Route::get('course/category/delete/{id}',[CourseCategoryController::class,'delete'])->name('admin.course-category.delete');
 
       //course
       Route::get('course/post/list',[CourseController::class,'index'])->name('admin.course-post.index');

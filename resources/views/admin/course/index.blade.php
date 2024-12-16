@@ -66,7 +66,7 @@
                       	@endif
 
                       	@if($row->status==0)
-                      	 <a href="{{route('admin.course-post.active',$row->id)}}" class="btn btn-success btn-sm" title="update status">
+                      	 <a href="{{route('admin.course-post.active',$row->id)}}" class="btn btn-danger btn-sm" title="update status">
                           <i class="las la-arrow-down"></i>
                         </a>
                       	@endif

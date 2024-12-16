@@ -1,6 +1,6 @@
 @extends('admin.master')
 @section('title')
-    {{'Blog Category Create'}}
+    {{'Category Edit'}}
 @endsection
 @section('content')
  <section class="content">
@@ -10,33 +10,33 @@
           <div class="col-sm-12">
             <div class="card">
               <div class="card-header">
-                <h4>Blog Category  Create
-                  <a href="{{route('admin.blog-category.index')}}" class="btn btn-primary btn-sm" style="float:right;">Back</a>
+                <h4>Category  Edit
+                  <a href="{{route('admin.category.index')}}" class="btn btn-primary btn-sm" style="float:right;">Back</a>
                 </h4>
               </div>
 
               <div class="card-body">
-                <form action="{{route('admin.blog-category.store')}}" method="POST">
+                <form action="{{route('admin.category.update',$category->id)}}" method="POST">
                   @csrf
                   <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" name="name"  class="form-control">
+                    <label>Name <span class="text-danger">*</span> </label>
+                    <input type="text" name="name" value="{{$category->name}}"   class="form-control">
                     @error('name')
                     <span class="text-danger">{{$message}}</span>
                     @enderror
                   </div>
 
                   <div class="form-group">
-                    <input type="submit" value="Submit" class="btn btn-primary btn-sm" style="float:right;">
+                    <input type="submit" value="Update" class="btn btn-primary btn-sm" style="float:right;">
                   </div>
                 </form>
               </div>
             </div>
           </div>
-          
+
         </div>
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </section>
-    
+
 @endsection

@@ -8,7 +8,7 @@ class Course extends Model
 {
     public function category()
     {
-        return $this->belongsTo(CourseCategory::class, 'course_category_id');
+        return $this->belongsTo(Category::class, 'course_category_id')->withDefault();
     }
 
     public function user()
