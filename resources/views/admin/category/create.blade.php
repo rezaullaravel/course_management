@@ -19,9 +19,17 @@
                 <form action="{{route('admin.category.store')}}" method="POST">
                   @csrf
                   <div class="form-group">
-                    <label>Name <span class="text-danger">*</span> </label>
-                    <input type="text" name="name"  class="form-control">
-                    @error('name')
+                    <label>Category Name English <span class="text-danger">*</span> </label>
+                    <input type="text" name="name_en"  class="form-control">
+                    @error('name_en')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
+                  </div>
+
+                  <div class="form-group">
+                    <label>Category Name Bangla <span class="text-danger">*</span> </label>
+                    <input type="text" name="name_bn"  class="form-control">
+                    @error('name_bn')
                     <span class="text-danger">{{$message}}</span>
                     @enderror
                   </div>

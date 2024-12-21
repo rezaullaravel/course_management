@@ -41,12 +41,17 @@ class CategoryController extends Controller implements HasMiddleware
     //store
     public function store(Request $request){
         $request->validate([
-            'name'=>'required|string|unique:categories,name'
+            'name_en'=>'required|string|unique:categories',
+            'name_bn'=>'required|string|unique:categories'
+        ],[
+            'name_en.required'=>'The category name english filed is required.',
+            'name_bn.required'=>'The category name bangla filed is required.',
         ]);
 
         $category = new Category;
-        $category->name = $request->name;
-        $category->slug = Str::slug($request->name);
+        $category->name_en = $request->name_en;
+        $category->name_bn = $request->name_bn;
+        $category->slug = Str::slug($request->name_en);
         $category->save();
         return redirect('admin/category/list')->with('message','Category Created Successfully');
     }//end method
@@ -60,12 +65,17 @@ class CategoryController extends Controller implements HasMiddleware
     //update
     public function update(Request $request,$id){
         $request->validate([
-            'name'=>'required|string|unique:categories,name,'.$id,
+            'name_en'=>'required|string|unique:categories,name_en,'.$id,
+            'name_bn'=>'required|string|unique:categories,name_bn,'.$id
+        ],[
+            'name_en.required'=>'The category name english filed is required.',
+            'name_bn.required'=>'The category name bangla filed is required.',
         ]);
 
         $category = Category::find($id);
-        $category->name = $request->name;
-        $category->slug = Str::slug($request->name);
+        $category->name_en = $request->name_en;
+        $category->name_bn = $request->name_bn;
+        $category->slug = Str::slug($request->name_en);
         $category->save();
         return redirect('admin/category/list')->with('message','Category Updated Successfully');
     }//end method
@@ -76,21 +86,27 @@ class CategoryController extends Controller implements HasMiddleware
 
         //delete related blog
         $related_blogs = Blog::where('blog_category_id',$id)->get();
-        foreach ($related_blogs as $blog) {
-            if(File::exists($blog->image)){
-                unlink($blog->image);
+        if(count($related_blogs)>0){
+            foreach ($related_blogs as $blog) {
+                if(File::exists($blog->image)){
+                    unlink($blog->image);
+                }
+                $blog->delete();
             }
-            $blog->delete();
         }
+
 
         //deleted related course
         $related_courses = Course::where('course_category_id',$id)->get();
-        foreach ($related_courses as $course) {
-            if(File::exists($course->image)){
-                unlink($course->image);
+        if(count($related_courses)>0){
+            foreach ($related_courses as $course) {
+                if(File::exists($course->image)){
+                    unlink($course->image);
+                }
+                $course->delete();
             }
-            $course->delete();
         }
+
 
         $category->delete();
         return redirect('admin/category/list')->with('message','Category Deleted Successfully');

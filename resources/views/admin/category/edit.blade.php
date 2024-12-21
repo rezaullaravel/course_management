@@ -19,11 +19,24 @@
                 <form action="{{route('admin.category.update',$category->id)}}" method="POST">
                   @csrf
                   <div class="form-group">
-                    <label>Name <span class="text-danger">*</span> </label>
-                    <input type="text" name="name" value="{{$category->name}}"   class="form-control">
-                    @error('name')
+                    <label>Category Name English <span class="text-danger">*</span> </label>
+                    <input type="text" name="name_en" value="{{$category->name_en}}"   class="form-control">
+                    @error('name_en')
                     <span class="text-danger">{{$message}}</span>
                     @enderror
+                  </div>
+
+                  <div class="form-group">
+                    <label>Category Name Bangla <span class="text-danger">*</span> </label>
+                    <input type="text" name="name_bn" value="{{$category->name_bn}}"  class="form-control">
+                    @error('name_bn')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
+                  </div>
+
+                  <div class="form-group">
+                    <label>Category Slug <span class="text-danger"></span> </label>
+                    <input type="text" name="slug" value="{{$category->slug}}"  class="form-control">
                   </div>
 
                   <div class="form-group">

@@ -19,14 +19,17 @@
 
               <div class="card-body">
                 @if($blogs->count()>0)
-                <table class="table table-bordered table-sm">
+                <table class="table  table-sm">
                   <thead class="text-center">
                     <tr>
                       <th>Sl</th>
                       <th>Category</th>
                       <th>Title</th>
-                      <th>Image</th>
+                      <th>Slug</th>
+                      <th>Thumbnail</th>
                       <th>Content</th>
+                      <th>Image2</th>
+                      <th>Image3</th>
                       <th>Author</th>
                       <th>Created</th>
                       <th>Status</th>
@@ -42,13 +45,29 @@
                    @foreach($blogs as $key => $row)
                     <tr>
                       <td>{{$key+1}}</td>
-                      <td>{{$row->category->name }}</td>
-                      <td>{{$row->title}}</td>
+                      <td>{{$row->category->name_en }}</td>
+                      <td>{{$row->title_en}}</td>
+                      <td>{{$row->slug}}</td>
                       <td>
                       	<img src="{{asset($row->image)}}" width="100" height="100">
                       </td>
-                      <td>{!!Str::limit($row->content,100)!!}</td>
-                      <td>{{$row->author}}</td>
+                      <td>{!!Str::limit($row->content_en,100)!!}</td>
+                      <td>
+                        @if (File::exists($row->image2))
+                        <img src="{{asset($row->image2)}}" width="100" height="100">
+                        @else
+                            <span>N/A</span>
+                        @endif
+                      </td>
+
+                      <td>
+                        @if (File::exists($row->image3))
+                        <img src="{{asset($row->image3)}}" width="100" height="100">
+                        @else
+                            <span>N/A</span>
+                        @endif
+                      </td>
+                      <td>{{$row->user->name}}</td>
                       <td>{{date('d-m-Y',strtotime($row->created_at))}}</td>
                       <td>
                       	@if($row->status==1)

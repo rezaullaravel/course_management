@@ -11,5 +11,10 @@ class Blog extends Model
         return $this->belongsTo(Category::class, 'blog_category_id')->withDefault();
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id')->withDefault();
+    }
+
 
 }

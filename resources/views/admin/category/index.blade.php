@@ -23,7 +23,9 @@
                   <thead class="text-center">
                     <tr>
                       <th>Sl</th>
-                      <th>Category Name</th>
+                      <th>Category Name English</th>
+                      <th>Category Name Bangla</th>
+                      <th>Category Slug</th>
                        <th width="150">
                           @if(auth()->user()->can('edit-category')||auth()->user()->can('delete-category'))
                            Action
@@ -36,7 +38,9 @@
                    @foreach($categories as $key => $row)
                     <tr>
                       <td>{{$key+1}}</td>
-                      <td>{{$row->name}}</td>
+                      <td>{{$row->name_en}}</td>
+                      <td>{{$row->name_bn}}</td>
+                      <td>{{$row->slug}}</td>
                       <td>
                         @can('edit-category')
                          <a href="{{route('admin.category.edit',$row->id)}}" class="btn btn-primary btn-sm" title="edit">
