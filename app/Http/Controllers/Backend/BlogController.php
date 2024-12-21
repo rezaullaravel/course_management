@@ -325,7 +325,7 @@ class BlogController extends Controller implements HasMiddleware
         $blog->user_id = Auth::user()->id;
         $blog->title_en = $request->title_en;
         $blog->title_bn = $request->title_bn;
-        $blog->slug = Str::slug($request->title_en);
+        $blog->slug = $request->slug;
         if(!empty($request->image)){
             $blog->image = $imagePath;
         }
