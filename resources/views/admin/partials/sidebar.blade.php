@@ -99,19 +99,61 @@
                 @endif
                 {{-- blog --}}
 
-               {{-- course --}}
-               @if (auth()->user()->can('view-course'))
-               <li class="nav-item">
-                   <a href="{{ route('admin.course-post.index') }}"
-                       class="nav-link {{ request()->is('admin/course/post*') ? 'active' : '' }}">
-                       <i class="nav-icon fas fa-chart-pie"></i>
-                       <p>
-                           Course
-                       </p>
-                   </a>
-               </li>
-           @endif
-               {{-- course --}}
+                {{-- course --}}
+                @if (auth()->user()->can('view-course'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.course-post.index') }}"
+                            class="nav-link {{ request()->is('admin/course/post*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-chart-pie"></i>
+                            <p>
+                                Course
+                            </p>
+                        </a>
+                    </li>
+                @endif
+                {{-- course --}}
+
+                {{-- book --}}
+                @if (auth()->user()->can('view-book'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.book.index') }}"
+                            class="nav-link {{ request()->is('admin/book*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-chart-pie"></i>
+                            <p>
+                                Ebook
+                            </p>
+                        </a>
+                    </li>
+                @endif
+                {{-- book --}}
+
+                {{-- package --}}
+                @if (auth()->user()->can('view-package'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.package.index') }}"
+                            class="nav-link {{ request()->is('admin/package*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-chart-pie"></i>
+                            <p>
+                                Package
+                            </p>
+                        </a>
+                    </li>
+                @endif
+                {{-- package --}}
+
+                {{-- about us --}}
+                @if (auth()->user()->can('view-about-us'))
+                <li class="nav-item">
+                    <a href="{{ route('admin.about-us.index') }}"
+                        class="nav-link {{ request()->is('admin/about-us*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <p>
+                            About Us
+                        </p>
+                    </a>
+                </li>
+            @endif
+                {{-- about us --}}
 
                 {{-- course --}}
                 {{-- @if (auth()->user()->can('view-course-category') || auth()->user()->can('view-course'))

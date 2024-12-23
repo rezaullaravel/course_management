@@ -1,12 +1,15 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\BlogController;
+use App\Http\Controllers\Backend\BookController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Auth\UserAuthController;
 use App\Http\Controllers\Backend\CourseController;
-use App\Http\Controllers\Backend\PermissionController;
+use App\Http\Controllers\Backend\AboutUsController;
+use App\Http\Controllers\Backend\PackageController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Backend\CourseCategoryController;
 
 
@@ -72,13 +75,6 @@ Route::middleware('admin')->prefix('admin')->group(function(){
       Route::post('/ckeditor/upload', [BlogController::class, 'uploadCkeditor'])->name('ckeditor.upload');
 
 
-      //course category
-    //   Route::get('course/category/list',[CourseCategoryController::class,'index'])->name('admin.course-category.index');
-    //   Route::get('course/category/create',[CourseCategoryController::class,'create'])->name('admin.course-category.create');
-    //   Route::post('course/category/store',[CourseCategoryController::class,'store'])->name('admin.course-category.store');
-    //   Route::get('course/category/edit/{id}',[CourseCategoryController::class,'edit'])->name('admin.course-category.edit');
-    //   Route::post('course/category/update/{id}',[CourseCategoryController::class,'update'])->name('admin.course-category.update');
-    //   Route::get('course/category/delete/{id}',[CourseCategoryController::class,'delete'])->name('admin.course-category.delete');
 
       //course
       Route::get('course/post/list',[CourseController::class,'index'])->name('admin.course-post.index');
@@ -89,6 +85,32 @@ Route::middleware('admin')->prefix('admin')->group(function(){
      Route::get('course/post/edit/{id}',[CourseController::class,'edit'])->name('admin.course-post.edit');
      Route::post('course/post/update/{id}',[CourseController::class,'update'])->name('admin.course-post.update');
      Route::get('course/post/delete/{id}',[CourseController::class,'delete'])->name('admin.course-post.delete');
+
+     //book
+     Route::get('book/list',[BookController::class,'index'])->name('admin.book.index');
+      Route::get('book/create',[BookController::class,'create'])->name('admin.book.create');
+      Route::post('book/store',[BookController::class,'store'])->name('admin.book.store');
+      Route::get('book/deactive/{id}',[BookController::class,'deactiveBook'])->name('admin.book.deactive');
+     Route::get('book/active/{id}',[BookController::class,'activeBook'])->name('admin.book.active');
+     Route::get('book/edit/{id}',[BookController::class,'edit'])->name('admin.book.edit');
+     Route::post('book/update/{id}',[BookController::class,'update'])->name('admin.book.update');
+     Route::get('book/delete/{id}',[BookController::class,'delete'])->name('admin.book.delete');
+
+     //package
+     Route::get('package/list',[PackageController::class,'index'])->name('admin.package.index');
+      Route::get('package/create',[PackageController::class,'create'])->name('admin.package.create');
+      Route::post('package/store',[PackageController::class,'store'])->name('admin.package.store');
+      Route::get('package/edit/{id}',[PackageController::class,'edit'])->name('admin.package.edit');
+     Route::post('package/update/{id}',[PackageController::class,'update'])->name('admin.package.update');
+     Route::get('package/delete/{id}',[PackageController::class,'delete'])->name('admin.package.delete');
+
+     //about us
+     Route::get('about-us/list',[AboutUsController::class,'index'])->name('admin.about-us.index');
+      Route::get('about-us/create',[AboutUsController::class,'create'])->name('admin.about-us.create');
+      Route::post('about-us/store',[AboutUsController::class,'store'])->name('admin.about-us.store');
+      Route::get('about-us/edit/{id}',[AboutUsController::class,'edit'])->name('admin.about-us.edit');
+     Route::post('about-us/update/{id}',[AboutUsController::class,'update'])->name('admin.about-us.update');
+     Route::get('about-us/delete/{id}',[AboutUsController::class,'delete'])->name('admin.about-us.delete');
 
 });
 /*=====================admin panel route end ========================== */

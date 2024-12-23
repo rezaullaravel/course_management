@@ -11,9 +11,9 @@
             <div class="card">
               <div class="card-header">
                 <h4>Role List
-                  
+
                   @can('create role')
-                   <a href="{{route('admin.role.create')}}" class="btn btn-primary btn-sm" style="float:right;"><i class="las la-plus-square"></i>Create Role</a> 
+                   <a href="{{route('admin.role.create')}}" class="btn btn-primary btn-sm" style="float:right;"><i class="las la-plus-square"></i>Create Role</a>
                   @endcan
                 </h4>
               </div>
@@ -23,9 +23,9 @@
                   <thead class="text-center">
                     <tr>
                       <th>Sl</th>
-                      <th>Name</th>
+                      <th>Role</th>
                       <th>Permission</th>
-                      
+
                         <th width="150">
                           @if(auth()->user()->can('edit role')||auth()->user()->can('delete role'))
                            Action
@@ -39,7 +39,7 @@
                     <tr>
                       <td>{{$key+1}}</td>
                       <td>{{$row->name}}</td>
-                     
+
                       <td>
                         <ul style="padding: 0;">
                           @foreach ($row->permissions as $permission)
@@ -50,7 +50,7 @@
                         </ul>
                       </td>
                       <td>
-                        
+
                         @can('edit role')
                           <a href="{{route('admin.role.edit',$row->id)}}" class="btn btn-primary btn-sm" title="edit">
                           Edit
@@ -59,7 +59,7 @@
                         @can('delete role')
                          <a href="{{route('admin.role.delete',$row->id)}}" class="btn btn-danger btn-sm" title="delete" onclick="confirmation(event)">
                           Delete
-                         </a> 
+                         </a>
                         @endcan
                       </td>
                     </tr>
@@ -69,10 +69,10 @@
               </div>
             </div>
           </div>
-          
+
         </div>
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </section>
-    
+
 @endsection

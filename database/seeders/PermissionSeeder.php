@@ -35,6 +35,20 @@ class PermissionSeeder extends Seeder
             'edit-blog',
             'delete-blog',
             'edit-blog-status',
+            'view-book',
+            'create-book',
+            'edit-book',
+            'delete-book',
+            'edit-book-status',
+            'book-details',
+            'view-package',
+            'create-package',
+            'edit-package',
+            'delete-package',
+            'view-about-us',
+            'create-about-us',
+            'edit-about-us',
+            'delete-about-us',
          ];
 
          foreach ($permissions as $permission) {
