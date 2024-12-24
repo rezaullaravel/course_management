@@ -49,6 +49,11 @@ class PermissionSeeder extends Seeder
             'create-about-us',
             'edit-about-us',
             'delete-about-us',
+            'view-testimonial',
+            'create-testimonial',
+            'edit-testimonial',
+            'delete-testimonial',
+            'view-contact-message'
          ];
 
          foreach ($permissions as $permission) {

@@ -143,17 +143,45 @@
 
                 {{-- about us --}}
                 @if (auth()->user()->can('view-about-us'))
-                <li class="nav-item">
-                    <a href="{{ route('admin.about-us.index') }}"
-                        class="nav-link {{ request()->is('admin/about-us*') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-chart-pie"></i>
-                        <p>
-                            About Us
-                        </p>
-                    </a>
-                </li>
-            @endif
+                    <li class="nav-item">
+                        <a href="{{ route('admin.about-us.index') }}"
+                            class="nav-link {{ request()->is('admin/about-us*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-chart-pie"></i>
+                            <p>
+                                About Us
+                            </p>
+                        </a>
+                    </li>
+                @endif
                 {{-- about us --}}
+
+                {{-- testimonial --}}
+                @if (auth()->user()->can('view-testimonial'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.testimonial.index') }}"
+                            class="nav-link {{ request()->is('admin/testimonial*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-chart-pie"></i>
+                            <p>
+                                Testimonial
+                            </p>
+                        </a>
+                    </li>
+                @endif
+                {{-- testimonial --}}
+
+                {{-- contact us message --}}
+                @if (auth()->user()->can('view-contact-message'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.view-contact-message') }}"
+                            class="nav-link {{ request()->is('admin/view-contact-message*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-chart-pie"></i>
+                            <p>
+                                Contact Message
+                            </p>
+                        </a>
+                    </li>
+                @endif
+                {{-- contact us message --}}
 
                 {{-- course --}}
                 {{-- @if (auth()->user()->can('view-course-category') || auth()->user()->can('view-course'))

@@ -10,6 +10,8 @@ use App\Http\Controllers\Backend\AboutUsController;
 use App\Http\Controllers\Backend\PackageController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\PermissionController;
+use App\Http\Controllers\Backend\TestimonialController;
+use App\Http\Controllers\Backend\ContactMessageController;
 use App\Http\Controllers\Backend\CourseCategoryController;
 
 
@@ -111,6 +113,18 @@ Route::middleware('admin')->prefix('admin')->group(function(){
       Route::get('about-us/edit/{id}',[AboutUsController::class,'edit'])->name('admin.about-us.edit');
      Route::post('about-us/update/{id}',[AboutUsController::class,'update'])->name('admin.about-us.update');
      Route::get('about-us/delete/{id}',[AboutUsController::class,'delete'])->name('admin.about-us.delete');
+
+     //testimonial
+     Route::get('testimonial/list',[TestimonialController::class,'index'])->name('admin.testimonial.index');
+      Route::get('testimonial/create',[TestimonialController::class,'create'])->name('admin.testimonial.create');
+      Route::post('testimonial/store',[TestimonialController::class,'store'])->name('admin.testimonial.store');
+      Route::get('testimonial/edit/{id}',[TestimonialController::class,'edit'])->name('admin.testimonial.edit');
+     Route::post('testimonial/update/{id}',[TestimonialController::class,'update'])->name('admin.testimonial.update');
+     Route::get('testimonial/delete/{id}',[TestimonialController::class,'delete'])->name('admin.testimonial.delete');
+
+     //view contact message
+     Route::get('/view-contact-message',[ContactMessageController::class,'index'])->name('admin.view-contact-message');
+     Route::get('/change-contact-message-status/{id}',[ContactMessageController::class,'changeMessageStatus'])->name('admin.message-status-change');
 
 });
 /*=====================admin panel route end ========================== */
