@@ -57,7 +57,8 @@
                                                     {{ $row->slug }}
                                                 </td>
                                                 <td>
-                                                    <img src="{{ asset($row->image) }}" width="100" height="100">
+                                                     <img src="{{ asset($row->image)}}" width="100" height="100">
+
                                                 </td>
                                                 <td>
                                                     @if (File::exists($row->another_image))

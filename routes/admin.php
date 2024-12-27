@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\BookController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Auth\UserAuthController;
+use App\Http\Controllers\Backend\Couponcontroller;
 use App\Http\Controllers\Backend\CourseController;
 use App\Http\Controllers\Backend\AboutUsController;
 use App\Http\Controllers\Backend\PackageController;
@@ -121,6 +122,14 @@ Route::middleware('admin')->prefix('admin')->group(function(){
       Route::get('testimonial/edit/{id}',[TestimonialController::class,'edit'])->name('admin.testimonial.edit');
      Route::post('testimonial/update/{id}',[TestimonialController::class,'update'])->name('admin.testimonial.update');
      Route::get('testimonial/delete/{id}',[TestimonialController::class,'delete'])->name('admin.testimonial.delete');
+
+     //coupon
+     Route::get('coupon/list',[Couponcontroller::class,'index'])->name('admin.coupon.index');
+      Route::get('coupon/create',[Couponcontroller::class,'create'])->name('admin.coupon.create');
+      Route::post('coupon/store',[Couponcontroller::class,'store'])->name('admin.coupon.store');
+      Route::get('coupon/edit/{id}',[Couponcontroller::class,'edit'])->name('admin.coupon.edit');
+     Route::post('coupon/update/{id}',[Couponcontroller::class,'update'])->name('admin.coupon.update');
+     Route::get('coupon/delete/{id}',[Couponcontroller::class,'delete'])->name('admin.coupon.delete');
 
      //view contact message
      Route::get('/view-contact-message',[ContactMessageController::class,'index'])->name('admin.view-contact-message');
