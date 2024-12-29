@@ -81,7 +81,7 @@
 
             {{-- fetch all course --}}
             @php
-                $courses = App\Models\Course::orderBy('id', 'desc')->limit(4)->get();
+                $courses = App\Models\Course::orderBy('id', 'desc')->where('status', 1)->limit(4)->get();
             @endphp
             <div class="row g-3">
                 @foreach ($courses as $course)
@@ -90,10 +90,12 @@
                             <div class="position-relative">
 
                                 @if (!empty($course->video_url))
-                                    <p>{!! $course->video_url !!}</p>
+                                    <div class="ratio ratio-16x9">
+                                        {!! $course->video_url !!}
+                                    </div>
                                 @else
-                                    <img src="{{ asset($course->image) }}" class="card-img-top"
-                                        width="100%" height="320" />
+                                    <img src="{{ asset($course->image) }}" class="card-img-top" width="100%"
+                                        height="320" />
                                 @endif
                                 {{-- <img class="position-absolute top-50 start-50 translate-middle"
                                 src="{{ asset('/') }}frontend/images/i-paly.svg" alt="" /> --}}
@@ -108,18 +110,30 @@
                             </button>
                             <div class="card-body p-0 gap-8 flex-column">
                                 <h5 class="card-title color-text fw-bold">
-                                    @if (session()->get('lang') == 'bangla')
-                                        {{ $course->title_bn }}
-                                    @else
-                                        {{ $course->title_en }}
-                                    @endif
+                                    <a
+                                        href="{{ route('course-details', [
+                                            'id' => $course->id,
+                                            'slug' => $course->slug,
+                                        ]) }}">
+                                        @if (session()->get('lang') == 'bangla')
+                                            {{ $course->title_bn }}
+                                        @else
+                                            {{ $course->title_en }}
+                                        @endif
+                                    </a>
                                 </h5>
                                 <p class="card-text">
-                                    @if (session()->get('lang') == 'bangla')
-                                        {!! Str::limit($course->content_bn, 80) !!}
-                                    @else
-                                        {!! Str::limit($course->content_en, 80) !!}
-                                    @endif
+                                    <a
+                                        href="{{ route('course-details', [
+                                            'id' => $course->id,
+                                            'slug' => $course->slug,
+                                        ]) }}">
+                                        @if (session()->get('lang') == 'bangla')
+                                            {!! Str::limit($course->content_bn, 80) !!}
+                                        @else
+                                            {!! Str::limit($course->content_en, 80) !!}
+                                        @endif
+                                    </a>
                                 </p>
                             </div>
                         </div>
@@ -135,6 +149,7 @@
                 <div class="row g-3">
                     @php
                         $catwiseCourse = App\Models\Course::where('course_category_id', $category->id)
+                            ->where('status', 1)
                             ->orderBy('id', 'desc')
                             ->limit(4)
                             ->get();
@@ -146,8 +161,8 @@
                                     @if (!empty($course->video_url))
                                         <p>{!! $course->video_url !!}</p>
                                     @else
-                                        <img src="{{ asset($course->image) }}" class="card-img-top"
-                                            width="100%" height="320"/>
+                                        <img src="{{ asset($course->image) }}" class="card-img-top" width="100%"
+                                            height="320" />
                                     @endif
                                     {{-- <img class="position-absolute top-50 start-50 translate-middle"
                                 src="{{ asset('/') }}frontend/images/i-paly.svg" alt="" /> --}}
@@ -163,18 +178,30 @@
                                 </button>
                                 <div class="card-body p-0 gap-8 flex-column">
                                     <h5 class="card-title color-text fw-bold">
-                                        @if (session()->get('lang') == 'bangla')
-                                            {{ $course->title_bn }}
-                                        @else
-                                            {{ $course->title_en }}
-                                        @endif
+                                        <a
+                                            href="{{ route('course-details', [
+                                                'id' => $course->id,
+                                                'slug' => $course->slug,
+                                            ]) }}">
+                                            @if (session()->get('lang') == 'bangla')
+                                                {{ $course->title_bn }}
+                                            @else
+                                                {{ $course->title_en }}
+                                            @endif
+                                        </a>
                                     </h5>
                                     <p class="card-text">
-                                        @if (session()->get('lang') == 'bangla')
-                                            {!! Str::limit($course->content_bn, 80) !!}
-                                        @else
-                                            {!! Str::limit($course->content_en, 80) !!}
-                                        @endif
+                                        <a
+                                            href="{{ route('course-details', [
+                                                'id' => $course->id,
+                                                'slug' => $course->slug,
+                                            ]) }}">
+                                            @if (session()->get('lang') == 'bangla')
+                                                {!! Str::limit($course->content_bn, 80) !!}
+                                            @else
+                                                {!! Str::limit($course->content_en, 80) !!}
+                                            @endif
+                                        </a>
                                     </p>
                                 </div>
                             </div>

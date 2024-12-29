@@ -15,10 +15,6 @@
             @else
                 Recent Blog
             @endif
-
-
-
-
         </button>
         <!-- Heading -->
 
@@ -57,8 +53,11 @@
                 <div class="col-12 col-lg-4">
                     <div class="blog-card gap-16">
 
+
                         @if (!empty($blog->video_url))
-                            <p>{!! $blog->video_url !!}</p>
+                        <div class="ratio ratio-16x9">
+                            {!! $blog->video_url !!}
+                        </div>
                         @else
                             <img src="{{ asset($blog->image) }}" alt="" />
                         @endif

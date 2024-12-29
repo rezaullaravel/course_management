@@ -11,7 +11,7 @@ class UserAuthController extends Controller
 {
     //user login page
     public function index(){
-      
+
       if(Auth::check()){
         $user = Auth::user();
         if($user->role=='1'){
@@ -21,7 +21,7 @@ class UserAuthController extends Controller
         }
       } else {
         return view('auth.login');
-      } 
+      }
     }//end method
 
 
@@ -31,8 +31,13 @@ class UserAuthController extends Controller
             'email'=>'required|email',
             'password'=>'required'
         ]);
- 
+
         if(Auth::attempt(['email'=>$request->email,'password'=>$request->password])){
+            if (session()->has('previous_url')) {
+                $previousUrl = $request->session()->pull('previous_url'); // Retrieve and remove the URL
+                return redirect($previousUrl);
+
+            }
             return redirect('/user/dashboard');
         } else {
             return redirect()->back()->with('error_message','Oops!Your credentials do not match our records. Please try again.');
@@ -45,7 +50,7 @@ class UserAuthController extends Controller
         return view('admin.home.index');
     }//end method
 
-    
+
     //admin logout
     public function userLogout(){
         Auth::logout();
