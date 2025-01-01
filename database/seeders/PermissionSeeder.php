@@ -58,6 +58,7 @@ class PermissionSeeder extends Seeder
             'create-coupon',
             'edit-coupon',
             'delete-coupon',
+            'payment-gatway',
          ];
 
          foreach ($permissions as $permission) {

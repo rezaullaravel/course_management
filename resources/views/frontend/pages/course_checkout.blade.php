@@ -90,7 +90,7 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="form-check gap-8 flex-row align-items-center">
                                     <input class="form-check-input mt-0" type="radio" name="payment_method"
-                                        value="aamar_pay" id="flexRadioDefault1" checked required />
+                                        value="aamarPay" id="flexRadioDefault1" checked required />
                                     <label class="form-check-label">
                                         বিকাশ/নগদ/রকেট
                                     </label>

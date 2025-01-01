@@ -1,11 +1,13 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\LanguageChangeController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontHomeController;
 use App\Http\Controllers\Frontend\ApplyCouponController;
-use App\Http\Controllers\Frontend\CourseOrderController;
 use App\Http\Controllers\Frontend\FrontContactController;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+
 
 
 //frontend home page
@@ -17,7 +19,12 @@ Route::get('/course-details/{id}/{slug}',[FrontHomeController::class,'courseDeta
 Route::get('/course-checkout/{id}',[CheckoutController::class,'courseCheckout'])->name('checkout');
 
 //course order store
-Route::post('/course-order-store',[CourseOrderController::class,'courseOrderStore'])->name('course-order.store');
+Route::post('/course-order-store',[OrderController::class,'courseOrderStore'])->name('course-order.store');
+
+//aamarpay payment gatway
+Route::post('/payment-success', [OrderController::class,'success'])->name('payment.success')->withoutMiddleware([VerifyCsrfToken::class]);
+Route::post('/fail', [OrderController::class,'fail'])->withoutMiddleware([VerifyCsrfToken::class])->name('fail');
+Route::post('/cancel', [OrderController::class,'cancel'])->withoutMiddleware([VerifyCsrfToken::class])->name('cancel');
 
 //coupon apply
 Route::post('/apply-coupon',[ApplyCouponController::class,'applyCoupon'])->name('coupon.apply');

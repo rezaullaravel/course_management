@@ -143,16 +143,16 @@
 
                 {{-- coupon --}}
                 @if (auth()->user()->can('view-coupon'))
-                <li class="nav-item">
-                    <a href="{{ route('admin.coupon.index') }}"
-                        class="nav-link {{ request()->is('admin/coupon*') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-chart-pie"></i>
-                        <p>
-                            Coupon
-                        </p>
-                    </a>
-                </li>
-            @endif
+                    <li class="nav-item">
+                        <a href="{{ route('admin.coupon.index') }}"
+                            class="nav-link {{ request()->is('admin/coupon*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-chart-pie"></i>
+                            <p>
+                                Coupon
+                            </p>
+                        </a>
+                    </li>
+                @endif
                 {{-- coupon --}}
 
                 {{-- about us --}}
@@ -196,6 +196,20 @@
                     </li>
                 @endif
                 {{-- contact us message --}}
+
+                {{-- payment gateway --}}
+                @if (auth()->user()->can('payment-gatway'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.payment-gateway') }}"
+                            class="nav-link {{ request()->is('admin/payment-gateway*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-chart-pie"></i>
+                            <p>
+                                Payment Gateway
+                            </p>
+                        </a>
+                    </li>
+                @endif
+                {{-- payment gateway --}}
 
                 {{-- course --}}
                 {{-- @if (auth()->user()->can('view-course-category') || auth()->user()->can('view-course'))

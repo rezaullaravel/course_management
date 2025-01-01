@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Backend\ContactMessageController;
 use App\Http\Controllers\Backend\CourseCategoryController;
+use App\Http\Controllers\Backend\PaymentGatewayController;
 
 
 /*=====================user admin authentication========================== */
@@ -134,6 +135,10 @@ Route::middleware('admin')->prefix('admin')->group(function(){
      //view contact message
      Route::get('/view-contact-message',[ContactMessageController::class,'index'])->name('admin.view-contact-message');
      Route::get('/change-contact-message-status/{id}',[ContactMessageController::class,'changeMessageStatus'])->name('admin.message-status-change');
+
+     //payment gateway
+     Route::get('payment-gateway',[PaymentGatewayController::class,'paymentGateway'])->name('admin.payment-gateway');
+     Route::post('aamarpay-update/{id}',[PaymentGatewayController::class,'aamarpayUpdate'])->name('admin.aamarpay.update');
 
 });
 /*=====================admin panel route end ========================== */
