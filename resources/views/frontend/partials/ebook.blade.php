@@ -56,18 +56,17 @@
 
                         <div class="gap-16 flex-row justify-content-between w-100">
                             <div class="flex-grow-1">
-                                <button class="btn btn-lg btn-outline-success rounded-pill w-100 h-100">
+                                <a href="{{ route('book.details',[
+                                'id'=>$book->id,
+                                'slug'=>$book->slug
+                                ]) }}" class="btn btn-lg btn-outline-success rounded-pill w-100 h-100">
 
                                     @if (session()->get('lang') == 'bangla')
                                     দেখুন
                                     @else
                                     View
                                     @endif
-
-
-
-
-                                </button>
+                                </a>
                             </div>
                             {{-- <buptton class="btn btn-p-18 btn-outline-success rounded-pill">
                                 <img src="{{ asset('/') }}frontend/images/download-01.svg" class="download-icon"

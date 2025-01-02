@@ -322,15 +322,17 @@
                     </div>
                     <!-- buttons -->
                     <div class="d-flex mt-5">
-                        <button class="btn btn-lg btn-outline-success w-100 rounded-pill">
+                        @if (session()->get('lang') == 'bangla')
+                            <a href="{{ route('package.checkout',$package->id) }}" class="btn btn-lg btn-outline-success w-100 rounded-pill">
 
-                            @if (session()->get('lang') == 'bangla')
                                 এখনই কিনুন
-                            @else
-                                Buy Now
-                            @endif
+                            </a>
+                        @else
+                            <button class="btn btn-lg btn-outline-success w-100 rounded-pill">
 
-                        </button>
+                                Buy Now
+                            </button>
+                        @endif
                         <button class="btn btn-p-18 btn-primary rounded-pill">
                             <img src="{{ asset('/') }}frontend/images/arrow.svg" alt="" />
                         </button>

@@ -48,7 +48,7 @@
                         {!! $course->video_url !!}
                     </div>
                 @else
-                    <img class="w-100" src="{{ asset('/') }}frontend/images/quran.svg" alt="" />
+                    <img class="w-100" src="{{ asset($course->image) }}" alt="" />
                     <img class="position-absolute top-50 start-50 translate-middle"
                         src="{{ asset('/') }}frontend/images/i-paly.svg" alt="" />
                 @endif
