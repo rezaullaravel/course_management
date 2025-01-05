@@ -257,6 +257,9 @@ class BlogController extends Controller implements HasMiddleware
         if(!empty($request->conclusiton_bn)){
             $blog->conclusiton_bn = $request->conclusiton_bn;
         }
+        if(!empty($request->is_featured)){
+            $blog->is_featured = $request->is_featured;
+        }
         $blog->save();
         return redirect('admin/blog/post/list')->with('message','Blog  Created Successfully');
     }//end method
@@ -490,6 +493,9 @@ class BlogController extends Controller implements HasMiddleware
         }
         if(!empty($request->conclusiton_bn)){
             $blog->conclusiton_bn = $request->conclusiton_bn;
+        }
+        if(!empty($request->is_featured)){
+            $blog->is_featured = $request->is_featured;
         }
         $blog->save();
         return redirect('admin/blog/post/list')->with('message','Blog  Updated Successfully');

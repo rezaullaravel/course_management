@@ -14,15 +14,17 @@
 
     canvas {
         display: block;
-        margin-bottom: 20px;
+        margin: 0 auto;
     }
 </style>
 
 <section class="content">
     <div class="container-fluid" style="padding-top: 20px;">
         <div class="row">
-            <div class="col-sm-10 offset-sm-1">
-                <h4>{{ $book->title_en }}</h4>
+            <div class="col-sm-12">
+                <h4>
+                    <a href="{{ url('admin/view-ordered-book') }}" class="btn btn-primary">Back</a>
+                </h4>
                 <div id="pdfContainer">
                     <!-- Pages will be appended dynamically here -->
                 </div>

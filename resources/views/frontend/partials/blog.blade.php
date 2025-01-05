@@ -41,7 +41,7 @@
     </div>
     {{-- fetch blog --}}
     @php
-        $blogs = App\Models\Blog::orderBy('id', 'desc')->limit(3)->get();
+        $blogs = App\Models\Blog::orderBy('id', 'desc')->where('status',1)->limit(3)->get();
     @endphp
 
     <!-- Blog -->
@@ -55,18 +55,23 @@
 
 
                         @if (!empty($blog->video_url))
-                        <div class="ratio ratio-16x9">
-                            {!! $blog->video_url !!}
-                        </div>
+                            <div class="ratio ratio-16x9">
+                                {!! $blog->video_url !!}
+                            </div>
                         @else
                             <img src="{{ asset($blog->image) }}" alt="" />
                         @endif
                         <h5>
-                            @if (session()->get('lang') == 'bangla')
-                                {{ $blog->title_bn }}
-                            @else
-                                {{ $blog->title_en }}
-                            @endif
+                            <a href="{{ route('blog.details',[
+                            'id'=>$blog->id,
+                            'slug'=>$blog->slug
+                            ]) }}">
+                                @if (session()->get('lang') == 'bangla')
+                                    {{ $blog->title_bn }}
+                                @else
+                                    {{ $blog->title_en }}
+                                @endif
+                            </a>
                             <span><img src="{{ asset('/') }}frontend/images/red-drow.svg" alt="" /></span>
                         </h5>
                         <div class="gap-10 flex-row align-items-center time">

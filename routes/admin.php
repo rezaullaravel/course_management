@@ -7,11 +7,13 @@ use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Auth\UserAuthController;
 use App\Http\Controllers\Backend\Couponcontroller;
 use App\Http\Controllers\Backend\CourseController;
+use App\Http\Controllers\Backend\NoticeController;
 use App\Http\Controllers\Backend\AboutUsController;
 use App\Http\Controllers\Backend\PackageController;
 use App\Http\Controllers\Backend\AllOrderController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\PermissionController;
+use App\Http\Controllers\Backend\WhystudyUsController;
 use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Backend\ContactMessageController;
 use App\Http\Controllers\Backend\CourseCategoryController;
@@ -117,6 +119,14 @@ Route::middleware('admin')->prefix('admin')->group(function(){
      Route::post('about-us/update/{id}',[AboutUsController::class,'update'])->name('admin.about-us.update');
      Route::get('about-us/delete/{id}',[AboutUsController::class,'delete'])->name('admin.about-us.delete');
 
+     //why study us
+     Route::get('why-studyus/list',[WhystudyUsController::class,'index'])->name('admin.why-studyus.index');
+     Route::get('why-studyus/create',[WhystudyUsController::class,'create'])->name('admin.why-studyus.create');
+     Route::post('why-studyus/store',[WhystudyUsController::class,'store'])->name('admin.why-studyus.store');
+     Route::get('why-studyus/edit/{id}',[WhystudyUsController::class,'edit'])->name('admin.why-studyus.edit');
+    Route::post('why-studyus/update/{id}',[WhystudyUsController::class,'update'])->name('admin.why-studyus.update');
+    Route::get('why-studyus/delete/{id}',[WhystudyUsController::class,'delete'])->name('admin.why-studyus.delete');
+
      //testimonial
      Route::get('testimonial/list',[TestimonialController::class,'index'])->name('admin.testimonial.index');
       Route::get('testimonial/create',[TestimonialController::class,'create'])->name('admin.testimonial.create');
@@ -150,7 +160,21 @@ Route::middleware('admin')->prefix('admin')->group(function(){
      Route::get('/read-ordered-book/{book_id}',[AllOrderController::class,'readOrderedBook'])->name('admin.read.ordered-book');
      Route::get('/books/secure-pdf/{id}', [AllOrderController::class, 'servePdf'])->name('books.secure-pdf');
 
+     //course order
+     Route::get('/view-ordered-course',[AllOrderController::class,'getAllOrderedCourse'])->name('admin.view-course-order');
+
+     //package order
+     Route::get('/view-ordered-package',[AllOrderController::class,'getAllOrderedPackage'])->name('admin.view-package-order');
+
      //===============all order========================================
 
+     //notice
+     Route::get('notice/list',[NoticeController::class,'index'])->name('admin.notice.index');
+     Route::get('notice/create',[NoticeController::class,'create'])->name('admin.notice.create');
+     Route::post('notice/store',[NoticeController::class,'store'])->name('admin.notice.store');
+     Route::get('notice/delete/{id}',[NoticeController::class,'delete'])->name('admin.notice.delete');
+
+     //class link
+     Route::get('class-link',[NoticeController::class,'classLink'])->name('user.class-link');
 });
 /*=====================admin panel route end ========================== */

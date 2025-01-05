@@ -62,6 +62,16 @@ class PermissionSeeder extends Seeder
             'view-book-order',
             'update-book-order-status',
             'read-ordered-book',
+            'view-course-order',
+            'view-package-order',
+            'view-notice',
+            'delete-notice',
+            'create-notice',
+            'class-link',
+            'why-studyus-view',
+            'why-studyus-create',
+            'why-studyus-edit',
+            'why-studyus-delete',
          ];
 
          foreach ($permissions as $permission) {

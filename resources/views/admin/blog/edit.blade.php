@@ -589,6 +589,16 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="">Featured Status</label>
+                                    <select name="is_featured" class="form-control">
+                                        <option value="" selected disabled>Select One</option>
+                                        <option value="1" {{ $blog->is_featured=='1' ? 'selected':'' }}>Yes</option>
+                                        <option value="0" {{ $blog->is_featured=='0' ? 'selected':'' }}>No</option>
+                                    </select>
+
+                                </div>
+
+                                <div class="form-group">
                                     <input type="submit" value="Update" class="btn btn-primary btn-sm"
                                         style="float:right;">
                                 </div>

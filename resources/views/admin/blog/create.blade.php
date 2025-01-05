@@ -555,6 +555,16 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="">Featured Status</label>
+                                    <select name="is_featured" class="form-control">
+                                        <option value="" selected disabled>Select One</option>
+                                        <option value="1">Yes</option>
+                                        <option value="0">No</option>
+                                    </select>
+
+                                </div>
+
+                                <div class="form-group">
                                     <input type="submit" value="Submit" class="btn btn-primary btn-sm"
                                         style="float:right;">
                                 </div>

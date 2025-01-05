@@ -155,6 +155,99 @@
                 @endif
                 {{-- coupon --}}
 
+
+
+                {{-- payment gateway --}}
+                @if (auth()->user()->can('payment-gatway'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.payment-gateway') }}"
+                            class="nav-link {{ request()->is('admin/payment-gateway*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-chart-pie"></i>
+                            <p>
+                                Payment Gateway
+                            </p>
+                        </a>
+                    </li>
+                @endif
+                {{-- payment gateway --}}
+
+                {{-- book order --}}
+                @if (auth()->user()->can('view-book-order'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.view-book-order') }}"
+                            class="nav-link {{ request()->is('admin/view-ordered-book*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-chart-pie"></i>
+                            <p>
+
+                                @if (Auth::user()->hasRole('user'))
+                                    My Ebook
+                                @else
+                                    Book Order
+                                @endif
+                            </p>
+                        </a>
+                    </li>
+                @endif
+                {{-- book order --}}
+
+                {{-- course order --}}
+                @if (auth()->user()->can('view-course-order'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.view-course-order') }}"
+                            class="nav-link {{ request()->is('admin/view-ordered-course*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-chart-pie"></i>
+                            <p>
+
+                                Course Order
+                            </p>
+                        </a>
+                    </li>
+                @endif
+                {{-- course order --}}
+
+                {{-- package order --}}
+                @if (auth()->user()->can('view-package-order'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.view-package-order') }}"
+                            class="nav-link {{ request()->is('admin/view-ordered-package*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-chart-pie"></i>
+                            <p>
+
+                                Package Order
+                            </p>
+                        </a>
+                    </li>
+                @endif
+                {{-- package order --}}
+
+                {{-- notice --}}
+                @if (auth()->user()->can('view-notice'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.notice.index') }}"
+                            class="nav-link {{ request()->is('admin/notice*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-chart-pie"></i>
+                            <p>
+                                Notice
+                            </p>
+                        </a>
+                    </li>
+                @endif
+                {{-- notice --}}
+
+                {{-- class link --}}
+                @if (auth()->user()->can('class-link'))
+                    <li class="nav-item">
+                        <a href="{{ route('user.class-link') }}"
+                            class="nav-link {{ request()->is('admin/class-link*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-chart-pie"></i>
+                            <p>
+                                Class Link
+                            </p>
+                        </a>
+                    </li>
+                @endif
+                {{-- class link --}}
+
                 {{-- about us --}}
                 @if (auth()->user()->can('view-about-us'))
                     <li class="nav-item">
@@ -168,6 +261,20 @@
                     </li>
                 @endif
                 {{-- about us --}}
+
+                {{-- why study us --}}
+                @if (auth()->user()->can('why-studyus-view'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.why-studyus.index') }}"
+                            class="nav-link {{ request()->is('admin/why-studyus*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-chart-pie"></i>
+                            <p>
+                                Why Study With Us
+                            </p>
+                        </a>
+                    </li>
+                @endif
+                {{-- why study us --}}
 
                 {{-- testimonial --}}
                 @if (auth()->user()->can('view-testimonial'))
@@ -196,34 +303,6 @@
                     </li>
                 @endif
                 {{-- contact us message --}}
-
-                {{-- payment gateway --}}
-                @if (auth()->user()->can('payment-gatway'))
-                    <li class="nav-item">
-                        <a href="{{ route('admin.payment-gateway') }}"
-                            class="nav-link {{ request()->is('admin/payment-gateway*') ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-chart-pie"></i>
-                            <p>
-                                Payment Gateway
-                            </p>
-                        </a>
-                    </li>
-                @endif
-                {{-- payment gateway --}}
-
-                {{-- book order --}}
-                @if (auth()->user()->can('view-book-order'))
-                <li class="nav-item">
-                    <a href="{{ route('admin.view-book-order') }}"
-                        class="nav-link {{ request()->is('admin/view-ordered-book*') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-chart-pie"></i>
-                        <p>
-                            View Book Order
-                        </p>
-                    </a>
-                </li>
-            @endif
-                {{-- book order --}}
 
                 {{-- course --}}
                 {{-- @if (auth()->user()->can('view-course-category') || auth()->user()->can('view-course'))

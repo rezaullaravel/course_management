@@ -937,6 +937,19 @@
                 </h4>
             </div>
             @endif
+
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-lg btn-primary rounded-pill">
+                    @if (session()->get('lang') == 'bangla')
+                        সব কোর্স দেখুন
+                    @else
+                        See All Courses
+                    @endif
+                </button>
+                <button class="btn btn-p-18 btn-primary rounded-pill">
+                    <img src="{{ asset('/') }}frontend/images/arrow.svg" alt="" />
+                </button>
+            </div>
         </div>
     </section>
     <!-- our course end -->

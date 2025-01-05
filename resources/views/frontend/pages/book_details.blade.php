@@ -39,10 +39,14 @@
                         @endif
                     </h5>
                     <p class="p-20 fw-medium color-primary">
-                        @if (session()->get('lang') == 'bangla')
-                            {{ $numto->bnNum($book->price_bn) }} ৳
+                        @if ($book->paid_status == 'paid')
+                            @if (session()->get('lang') == 'bangla')
+                                {{ $numto->bnNum($book->price_bn) }} ৳
+                            @else
+                                {{ $book->price_en }} $
+                            @endif
                         @else
-                            {{ $book->price_en }} $
+                        <span>Free</span>
                         @endif
                     </p>
                 </div>
@@ -314,30 +318,31 @@
                 </div>
 
                 <div class="">
-                    @if ($book->paid_status=='paid')
-
-                            @if (session()->get('lang') == 'bangla')
-                            <a href="{{ route('book.checkout',$book->id) }}" class="btn btn-lg bg-color-button">
+                    @if ($book->paid_status == 'paid')
+                        @if (session()->get('lang') == 'bangla')
+                            <a href="{{ route('book.checkout', $book->id) }}" class="btn btn-lg bg-color-button">
                                 অর্ডার করুন
                             </a>
-                            @else
+                        @else
                             <a href="" class="btn btn-lg bg-color-button">
                                 Order Now
                                 {{-- <img src="{{ asset('/') }}frontend/images/download-black.svg" alt="" /> --}}
                             </a>
-                            @endif
+                        @endif
                     @else
+                        <a href="{{ route('ebook.read', [
+                            'id' => $book->id,
+                            'slug' => $book->slug,
+                        ]) }}"
+                            class="btn btn-lg bg-color-button">
 
-
-                            <a href="" class="btn btn-lg bg-color-button">
-
-                                @if (session()->get('lang') == 'bangla')
+                            @if (session()->get('lang') == 'bangla')
                                 পড়ুন
-                                @else
+                            @else
                                 Read
-                                @endif
+                            @endif
 
-                            </a>
+                        </a>
                     @endif
                 </div>
             </div>
@@ -669,6 +674,19 @@
                     </h4>
                 </div>
             @endif
+
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-lg btn-primary rounded-pill">
+                    @if (session()->get('lang') == 'bangla')
+                        সব কোর্স দেখুন
+                    @else
+                        See All Courses
+                    @endif
+                </button>
+                <button class="btn btn-p-18 btn-primary rounded-pill">
+                    <img src="{{ asset('/') }}frontend/images/arrow.svg" alt="" />
+                </button>
+            </div>
         </div>
     </section>
     <!-- our course end -->

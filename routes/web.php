@@ -29,6 +29,10 @@ Route::post('/package-order-store',[OrderController::class,'packageOrderStore'])
 //ebook details
 Route::get('/book-details/{id}/{slug}',[FrontHomeController::class,'bookDetails'])->name('book.details');
 
+//ebook read
+Route::get('/ebook-read/{id}/{slug}',[FrontHomeController::class,'bookRead'])->name('ebook.read');
+Route::get('/ebook-secure-pdf/{id}',[FrontHomeController::class,'servePdf'])->name('free-book.secure-pdf');
+
 //ebook checkout
 Route::get('/book-checkout/{id}',[CheckoutController::class,'bookCheckout'])->name('book.checkout');
 
@@ -52,6 +56,9 @@ Route::post('/apply-coupon',[ApplyCouponController::class,'applyCoupon'])->name(
 
 //contact message store
 Route::post('/contact-store',[FrontContactController::class,'store'])->name('contact.store');
+
+//blog details
+Route::get('/blog-details/{id}/{slug}',[FrontHomeController::class,'blogDetails'])->name('blog.details');
 
 
 //language change

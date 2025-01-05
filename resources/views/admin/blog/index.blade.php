@@ -33,6 +33,7 @@
                       <th>Author</th>
                       <th>Created</th>
                       <th>Status</th>
+                      <th>Featured</th>
                        <th width="150">
                           @if(auth()->user()->can('edit-blog')||auth()->user()->can('delete-blog')||auth()->user()->can('edit-blog-status'))
                            Action
@@ -75,6 +76,13 @@
                       	@else
                       	<span class="badge badge-danger">Deactive</span>
                       	@endif
+                      </td>
+                      <td>
+                        @if ($row->is_featured=='1')
+                        <span class="badge badge-primary">Yes</span>
+                        @else
+                        <span class="badge badge-danger">No</span>
+                        @endif
                       </td>
                       <td>
                       	@can('edit-blog-status')

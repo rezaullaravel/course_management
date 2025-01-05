@@ -35,7 +35,7 @@
     </div>
 
     @php
-        $books = App\Models\Book::orderBy('id', 'desc')->limit(4)->get();
+        $books = App\Models\Book::orderBy('id', 'desc')->where('status',1)->limit(4)->get();
     @endphp
 
     <div class="gap-60">

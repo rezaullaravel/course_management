@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Backend;
 
 use App\Models\Book;
 use App\Models\BookOrder;
+use App\Models\CourseOrder;
+use App\Models\PackageOrder;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -21,6 +23,8 @@ class AllOrderController extends Controller implements HasMiddleware
          new Middleware(\Spatie\Permission\Middleware\PermissionMiddleware::using('view-book-order'), only:['getAllOrderedBook']),
          new Middleware(\Spatie\Permission\Middleware\PermissionMiddleware::using('update-book-order-status'), only:['bookOrderStatusEdit','bookOrderStatusUpdate']),
          new Middleware(\Spatie\Permission\Middleware\PermissionMiddleware::using('read-ordered-book'), only:['readOrderedBook','bookOrderStatusUpdate']),
+         new Middleware(\Spatie\Permission\Middleware\PermissionMiddleware::using('view-course-order'), only:['getAllOrderedCourse']),
+         new Middleware(\Spatie\Permission\Middleware\PermissionMiddleware::using('view-package-order'), only:['getAllOrderedPackage']),
      ];
      }
     //get all ordered book
@@ -69,4 +73,29 @@ class AllOrderController extends Controller implements HasMiddleware
             'Content-Disposition' => 'inline', // Open in browser without download
         ]);
    }
+
+   //view course order
+   public function getAllOrderedCourse(){
+
+    if(Auth::user()->hasRole('user')){
+
+        $courseOrders = CourseOrder::where('user_id',Auth::user()->id)->orderBy('id','desc')->get();
+    } else {
+        $courseOrders = CourseOrder::orderBy('id','desc')->get();
+    }
+
+    return view('admin.order_course.index',compact('courseOrders'));
+   }//end method
+
+   //view package order
+   public function getAllOrderedPackage(){
+    if(Auth::user()->hasRole('user')){
+
+        $packageOrders = PackageOrder::where('user_id',Auth::user()->id)->orderBy('id','desc')->get();
+    } else {
+        $packageOrders = PackageOrder::orderBy('id','desc')->get();
+    }
+
+    return view('admin.order_package.index',compact('packageOrders'));
+   }//end method
 }
