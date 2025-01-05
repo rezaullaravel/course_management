@@ -6,7 +6,7 @@
 @extends('frontend.master')
 
 @section('title')
-    {{ 'Course Details' }}
+    {{ 'Book Details' }}
 @endsection
 @section('content')
     {{-- book details --}}
@@ -317,7 +317,7 @@
                     @if ($book->paid_status=='paid')
 
                             @if (session()->get('lang') == 'bangla')
-                            <a href="" class="btn btn-lg bg-color-button">
+                            <a href="{{ route('book.checkout',$book->id) }}" class="btn btn-lg bg-color-button">
                                 অর্ডার করুন
                             </a>
                             @else

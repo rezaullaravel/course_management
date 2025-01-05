@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\Couponcontroller;
 use App\Http\Controllers\Backend\CourseController;
 use App\Http\Controllers\Backend\AboutUsController;
 use App\Http\Controllers\Backend\PackageController;
+use App\Http\Controllers\Backend\AllOrderController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Backend\TestimonialController;
@@ -139,6 +140,17 @@ Route::middleware('admin')->prefix('admin')->group(function(){
      //payment gateway
      Route::get('payment-gateway',[PaymentGatewayController::class,'paymentGateway'])->name('admin.payment-gateway');
      Route::post('aamarpay-update/{id}',[PaymentGatewayController::class,'aamarpayUpdate'])->name('admin.aamarpay.update');
+
+     //===============all order========================================
+
+     //book order
+     Route::get('/view-ordered-book',[AllOrderController::class,'getAllOrderedBook'])->name('admin.view-book-order');
+     Route::get('/book-order-status-edit/{id}',[AllOrderController::class,'bookOrderStatusEdit'])->name('admin.book-order-status.edit');
+     Route::post('/book-order-status-update/{id}',[AllOrderController::class,'bookOrderStatusUpdate'])->name('admin.book-order-status.update');
+     Route::get('/read-ordered-book/{book_id}',[AllOrderController::class,'readOrderedBook'])->name('admin.read.ordered-book');
+     Route::get('/books/secure-pdf/{id}', [AllOrderController::class, 'servePdf'])->name('books.secure-pdf');
+
+     //===============all order========================================
 
 });
 /*=====================admin panel route end ========================== */

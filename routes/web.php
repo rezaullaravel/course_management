@@ -29,11 +29,20 @@ Route::post('/package-order-store',[OrderController::class,'packageOrderStore'])
 //ebook details
 Route::get('/book-details/{id}/{slug}',[FrontHomeController::class,'bookDetails'])->name('book.details');
 
+//ebook checkout
+Route::get('/book-checkout/{id}',[CheckoutController::class,'bookCheckout'])->name('book.checkout');
+
+//ebook order store
+Route::post('/book-order-store',[OrderController::class,'bookOrderStore'])->name('book-order.store');
+
 //aamarpay payment gateway
 //for course
 Route::post('/payment-success', [OrderController::class,'success'])->name('payment.success')->withoutMiddleware([VerifyCsrfToken::class]);
 //for package
 Route::post('/package-payment-success', [OrderController::class,'successPackage'])->name('package.payment.success')->withoutMiddleware([VerifyCsrfToken::class]);
+//for book
+Route::post('/book-payment-success', [OrderController::class,'successBook'])->name('book.payment.success')->withoutMiddleware([VerifyCsrfToken::class]);
+
 Route::post('/fail', [OrderController::class,'fail'])->withoutMiddleware([VerifyCsrfToken::class])->name('fail');
 Route::post('/cancel', [OrderController::class,'cancel'])->withoutMiddleware([VerifyCsrfToken::class])->name('cancel');
 

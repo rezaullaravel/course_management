@@ -211,6 +211,20 @@
                 @endif
                 {{-- payment gateway --}}
 
+                {{-- book order --}}
+                @if (auth()->user()->can('view-book-order'))
+                <li class="nav-item">
+                    <a href="{{ route('admin.view-book-order') }}"
+                        class="nav-link {{ request()->is('admin/view-ordered-book*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <p>
+                            View Book Order
+                        </p>
+                    </a>
+                </li>
+            @endif
+                {{-- book order --}}
+
                 {{-- course --}}
                 {{-- @if (auth()->user()->can('view-course-category') || auth()->user()->can('view-course'))
                     <li class="nav-item {{ request()->is('admin/course*') ? 'menu-open' : '' }}">

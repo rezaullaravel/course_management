@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\Book;
 use App\Models\Course;
 use App\Models\Package;
 use Illuminate\Http\Request;
@@ -33,6 +34,22 @@ class CheckoutController extends Controller
             if(session()->get('lang')=='bangla'){
                 $package = Package::find($id);
             return view('frontend.pages.package_checkout',compact('package'));
+            } else {
+                abort(404, 'Page not available in the selected language.');
+            }
+
+        } else {
+            $previous_url =  Session::put('previous_url',url()->previous());
+            return redirect('/login');
+        }
+    }//end method
+
+    //book checkout
+    public function bookCheckout($id){
+        if(Auth::check()){
+            if(session()->get('lang')=='bangla'){
+                $book = Book::find($id);
+            return view('frontend.pages.book_checkout',compact('book'));
             } else {
                 abort(404, 'Page not available in the selected language.');
             }

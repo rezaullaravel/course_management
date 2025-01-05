@@ -59,6 +59,9 @@ class PermissionSeeder extends Seeder
             'edit-coupon',
             'delete-coupon',
             'payment-gatway',
+            'view-book-order',
+            'update-book-order-status',
+            'read-ordered-book',
          ];
 
          foreach ($permissions as $permission) {
