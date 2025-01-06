@@ -75,8 +75,13 @@
 
         <!-- Buttons -->
         <div class="d-flex justify-content-center">
-            <a type="button" class="btn btn-lg btn-primary rounded-pill">
+            <a href="{{ route('all.teacher') }}" class="btn btn-lg btn-primary rounded-pill">
+
+                @if (session()->get('lang') == 'bangla')
+                সকল শিক্ষকদের দেখুন
+                @else
                 See All Teachers
+                @endif
             </a>
             <a class="btn btn-p-18 btn-primary rounded-pill">
                 <img src="{{ asset('/') }}frontend/images/arrow.svg" alt="" />

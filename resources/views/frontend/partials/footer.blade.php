@@ -16,7 +16,7 @@
                     <div class="gap-12 flex-md-row mx-auto w-100">
                         <div class="input-group rounded-pill">
                             <span class="input-group-text rounded-start-pill bg-white border-0 ps-4" id="basic-addon1">
-                                <img src="./images/mail.svg" alt="" /></span>
+                                <img src="{{ asset('/') }}frontend//images/mail.svg" alt="" /></span>
                             <input type="text" class="form-control border-0 ps-0" placeholder="Username"
                                 aria-label="Username" aria-describedby="basic-addon1" />
                         </div>
@@ -42,42 +42,42 @@
                 </div>
 
                 <div class="gap-50 flex-row justify-content-center flex-wrap fw-medium">
-                    <a href="">
+                    <a href="{{ url('/') }}">
                         @if (session()->get('lang') == 'bangla')
                             হোম
                         @else
                             Home
                         @endif
                     </a>
-                    <a href="">
+                    <a href="{{ route('all.course') }}">
                         @if (session()->get('lang') == 'bangla')
                             কোর্স
                         @else
                             Course
                         @endif
                     </a>
-                    <a href="">
+                    <a href="{{ route('all.book') }}">
                         @if (session()->get('lang') == 'bangla')
                             ইবুক
                         @else
                             E-Book
                         @endif
                     </a>
-                    <a href="">
+                    <a href="{{ route('all.blog') }}">
                         @if (session()->get('lang') == 'bangla')
                             ব্লগ
                         @else
                             Blog
                         @endif
                     </a>
-                    <a href="">
+                    <a href="{{ route('about.us') }}">
                         @if (session()->get('lang') == 'bangla')
                             সম্পর্কে
                         @else
                             About
                         @endif
                     </a>
-                    <a href="">
+                    <a href="{{ route('contact.us') }}">
                         @if (session()->get('lang') == 'bangla')
                             যোগাযোগ
                         @else
@@ -118,11 +118,16 @@
                             @foreach ($courses as $course)
                                 <div class="gap-12">
                                     <p>
-                                        @if (session()->get('lang') == 'bangla')
-                                            {{ $course->title_bn }}
-                                        @else
-                                            {{ $course->title_en }}
-                                        @endif
+                                        <a href="{{ route('course-details', [
+                                                'id' => $course->id,
+                                                'slug' => $course->slug,
+                                            ]) }}">
+                                            @if (session()->get('lang') == 'bangla')
+                                                {{ $course->title_bn }}
+                                            @else
+                                                {{ $course->title_en }}
+                                            @endif
+                                        </a>
                                     </p>
 
                                 </div>
@@ -138,14 +143,14 @@
             <div
                 class="container d-flex gap-4 justify-content-between align-items-center flex-column flex-lg-row text-center">
                 <p class="order-2 order-lg-1">
-                    <img src="./images/mail.svg" alt="" />
-                    support@talimussunnah.com
+                    <img src="{{ asset('/') }}frontend//images/mail.svg" alt="" />
+                    <a href="mailto:support@talimussunnah.com">support@talimussunnah.com</a>
                 </p>
 
                 <div class="d-flex flex-row gap-3 order-1 order-lg-2">
-                    <img src="./images/logos_facebook.svg" alt="" />
-                    <img src="./images/flowbite_x-solid.svg" alt="" />
-                    <img src="./images/skill-icons_instagram.svg" alt="" />
+                    <img src="{{ asset('/') }}frontend/images/logos_facebook.svg" alt="" />
+                    <img src="{{ asset('/') }}frontend/images/flowbite_x-solid.svg" alt="" />
+                    <img src="{{ asset('/') }}frontend/images/skill-icons_instagram.svg" alt="" />
                 </div>
 
                 <p class="order-3">

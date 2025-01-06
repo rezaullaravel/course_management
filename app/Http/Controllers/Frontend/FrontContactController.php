@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 class FrontContactController extends Controller
 {
     //store contact message
-    public function store(Request $request){
+    public function storeContactMessage(Request $request){
         $contact = new ContactUs();
         $contact->name = $request->name;
         $contact->email = $request->email;
@@ -17,6 +17,11 @@ class FrontContactController extends Controller
         $contact->subject = $request->subject;
         $contact->message = $request->message;
         $contact->save();
-        return redirect()->back()->with('message','Your message has been sent successfully');
+        if (session()->get('lang') == 'bangla') {
+            $message = 'আপনার বার্তাটি সফলভাবে পাঠানো হয়েছে';
+        } else {
+            $message = 'Your message has been sent successfully';
+        }
+        return redirect()->back()->with('success_message',$message);
     }//end method
 }

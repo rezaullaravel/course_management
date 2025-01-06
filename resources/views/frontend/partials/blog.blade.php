@@ -99,13 +99,13 @@
 
         <!-- Buttons -->
         <div class="d-flex justify-content-center">
-            <button class="btn btn-lg btn-primary rounded-pill">
+            <a href="{{ route('all.blog') }}" class="btn btn-lg btn-primary rounded-pill">
                 @if (session()->get('lang') == 'bangla')
                     সকল ব্লগ দেখুন
                 @else
                     See All Blogs
                 @endif
-            </button>
+            </a>
             <button class="btn btn-p-18 btn-primary rounded-pill">
                 <img src="{{ asset('/') }}frontend/images/arrow.svg" alt="" />
             </button>

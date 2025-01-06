@@ -22,7 +22,9 @@ use App\Http\Controllers\Backend\PaymentGatewayController;
 
 /*=====================user admin authentication========================== */
 Route::get('/login',[UserAuthController::class,'index']);
+Route::get('/signup',[UserAuthController::class,'signup']);
 Route::post('/login',[UserAuthController::class,'login'])->name('user.post.login');
+Route::post('/register',[UserAuthController::class,'register'])->name('user.post.register');
 
 
 Route::middleware('admin')->prefix('user')->group(function(){

@@ -800,13 +800,13 @@
                             </div>
 
                             <div class="d-flex justify-content-between">
-                                <button class="btn btn-lg btn-outline-success rounded-pill w-100">
+                                <a href="{{ route('all.course') }}" class="btn btn-lg btn-outline-success rounded-pill w-100">
                                     @if (session()->get('lang') == 'bangla')
                                         সকল কোর্স দেখুন
                                     @else
                                         View All Course
                                     @endif
-                                </button>
+                                </a>
                                 <button class="btn btn-p-18 btn-outline-success rounded-pill">
                                     <img src="{{ asset('/') }}frontend/images/i-arrow-primary.svg" alt="" />
                                 </button>
@@ -939,13 +939,13 @@
             @endif
 
             <div class="d-flex justify-content-center">
-                <button class="btn btn-lg btn-primary rounded-pill">
+                <a href="{{ route('all.course') }}" class="btn btn-lg btn-primary rounded-pill">
                     @if (session()->get('lang') == 'bangla')
                         সব কোর্স দেখুন
                     @else
                         See All Courses
                     @endif
-                </button>
+                </a>
                 <button class="btn btn-p-18 btn-primary rounded-pill">
                     <img src="{{ asset('/') }}frontend/images/arrow.svg" alt="" />
                 </button>

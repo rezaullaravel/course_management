@@ -1,74 +1,114 @@
+@extends('frontend.master')
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>User Login</title>
+@section('title')
+    {{ 'Login Page' }}
+@endsection
 
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{asset('/')}}backend/plugins/fontawesome-free/css/all.min.css">
-  <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="{{asset('/')}}backend/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{asset('/')}}backend/dist/css/adminlte.min.css">
-</head>
-<body class="hold-transition login-page">
-<div class="login-box">
-  <div class="login-logo">
-    <a href="../../index2.html"><b>Administrative</b>  Panel</a>
-  </div>
-  <!-- /.login-logo -->
-  <div class="card">
-    <div class="card-body login-card-body">
-    	@if(session('error_message'))
-    	 <div class="alert alert-danger">
-    	 	<p class="text-center">{{session('error_message')}}</p>
-    	 </div>
-    	@endif
-      <p class="login-box-msg">Sign in to start your session</p>
+@section('content')
+    <div class="sign-in-page">
+        <div class="gap-48 flex-md-row align-items-stretch">
+            <!-- left image for lg size -->
+            <img class="left-img d-none d-md-block" src="{{asset('/')}}frontend/images/login.svg" alt="" />
 
-      <form action="{{route('user.post.login')}}" method="post">
-      	@csrf
-        <div class="form-group mb-3">
-          <input type="email" name="email" class="form-control" placeholder="Email">
-          @error('email')
-           <span class="text-danger">{{$message}}</span>
-          @enderror
+            <!-- logo for small size -->
+            <img class="mx-auto d-md-none" src=".{{asset('/')}}frontend/images/logo.svg" width="120px" alt="" />
+
+            <!-- center form div -->
+            <div class="d-flex justify-content-center align-items-center w-100 h-auto">
+                <div class="card-wrapper">
+                    <div class="card rounded-4 gap-36">
+                        <!-- form heading -->
+                        <h4 class="text-center color-primary">
+                            @if (session()->get('lang') == 'bangla')
+                            লগিন করুন
+                            @else
+                            Log In
+                            @endif
+                        </h4>
+
+                        @if (session('error_message'))
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                             {{ session('error_message') }}
+                          </div>
+                        @endif
+                        <div class="gap-40">
+                            <!-- form -->
+                            <form action="{{ route('user.post.login') }}" method="post" class="gap-40">
+                                @csrf
+                                <div class="gap-16">
+                                    <!-- email -->
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-transparent border-end-0">
+                                            <img src="{{asset('/')}}frontend/images/i-email-black.svg" alt="" />
+                                        </span>
+
+                                        <input type="email" name="email" required
+                                            class="form-control ps-0 border-start-0 rounded-3 rounded-start-0"
+                                            aria-label="Dollar amount (with dot and two decimal places)"
+                                              @if (session()->get('lang') == 'bangla')
+                                            placeholder="ইমেইল এড্রেস"
+                                            @else
+                                            placeholder="email address"
+                                            @endif />
+                                    </div>
+
+                                    <!-- password -->
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-transparent border-end-0">
+                                            <img src="{{asset('/')}}frontend/images/password.svg" alt="" />
+                                        </span>
+
+                                        <input type="password" name="password" class="form-control ps-0 border-start-0 border-end-0"
+                                            aria-label="Amount (to the nearest dollar)"  @if (session()->get('lang') == 'bangla')
+                                            placeholder="পাসওয়ার্ড"
+                                            @else
+                                            placeholder="password"
+                                            @endif />
+                                        <span class="input-group-text border-start-0 bg-transparent">
+                                            <img src="{{asset('/')}}frontend/images/i-password-eay.svg" alt="" />
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                                <!-- Button -->
+                                <div class="btn btn-primary">
+                                    <button type="submit" class="btn-primary">
+                                        @if (session()->get('lang') == 'bangla')
+                                        লগিন করুন
+                                        @else
+                                        Log In
+                                        @endif
+                                    </button>
+                                </div>
+
+                                <div class="gap-40">
+
+                                    <!-- have an account? -->
+                                    <div class="gap-8 flex-row justify-content-center">
+                                        <p class="">
+                                            @if (session()->get('lang') == 'bangla')
+                                            কোনো একাউন্ট নেই?
+                                            @else
+                                            Have not  an account?
+                                            @endif
+                                        </p>
+                                        <a href="{{ url('signup') }}" class="color-primary fw-medium">
+                                            @if (session()->get('lang') == 'bangla')
+                                            সাইন আপ করুন
+                                            @else
+                                            Sign Up
+                                            @endif
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      	
-        
-        <div class="form-group mb-3">
-          <input type="password" name="password" class="form-control" placeholder="Password">
-          @error('password')
-            <span class="text-danger">{{$message}}</span>
-          @enderror
-        </div>
-         
-        <div class="row">
-          <div class="col-8">
-           
-          </div>
-          <!-- /.col -->
-          <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-          </div>
-          <!-- /.col -->
-        </div>
-      </form>
     </div>
-    <!-- /.login-card-body -->
-  </div>
-</div>
-<!-- /.login-box -->
-
-<!-- jQuery -->
-<script src="{{asset('/')}}backend/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="{{asset('/')}}backend/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="{{asset('/')}}backend/dist/js/adminlte.min.js"></script>
-</body>
-</html>
+@endsection

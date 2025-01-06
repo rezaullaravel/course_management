@@ -60,6 +60,29 @@ Route::post('/contact-store',[FrontContactController::class,'store'])->name('con
 //blog details
 Route::get('/blog-details/{id}/{slug}',[FrontHomeController::class,'blogDetails'])->name('blog.details');
 
+//all course
+Route::get('/course-all',[FrontHomeController::class,'allCourse'])->name('all.course');
+//all book
+Route::get('/book-all',[FrontHomeController::class,'allBook'])->name('all.book');
+//all blog
+Route::get('/blog-all',[FrontHomeController::class,'allBlog'])->name('all.blog');
+//all teacher
+Route::get('/teacher-all',[FrontHomeController::class,'allTeacher'])->name('all.teacher');
+
+//pricing package/membership pricing
+Route::get('/package-pricing',[FrontHomeController::class,'pricing'])->name('pricing');
+
+//category wise course
+Route::get('/courses-category/{category_id}/{slug}',[FrontHomeController::class,'categoryWiseCourse'])->name('categorywise.course');
+
+//about us
+Route::get('/about-us',[FrontHomeController::class,'aboutUs'])->name('about.us');
+
+//contact us
+Route::get('/contact-us',[FrontHomeController::class,'contactUs'])->name('contact.us');
+
+//store contact message
+Route::post('/store-contact-message',[FrontContactController::class,'storeContactMessage'])->name('store.contact.message');
 
 //language change
 Route::get('/lang-eng',[LanguageChangeController::class,'english'])->name('lang.english');

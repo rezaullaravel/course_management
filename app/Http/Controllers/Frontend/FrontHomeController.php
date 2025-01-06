@@ -4,7 +4,11 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\Blog;
 use App\Models\Book;
+use App\Models\User;
 use App\Models\Course;
+use App\Models\AboutUs;
+use App\Models\Package;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -56,4 +60,53 @@ class FrontHomeController extends Controller
         $blog = Blog::find($id);
         return view('frontend.pages.blog_details',compact('blog'));
     }//end method
+
+    //all course
+    public function allCourse(){
+        $courses = Course::orderBy('id','desc')->where('status',1)->paginate(20);
+        return view('frontend.pages.course_all',compact('courses'));
+    }//end method
+
+    //all book
+    public function allBook(){
+        $books = Book::orderBy('id','desc')->where('status',1)->paginate(20);
+        return view('frontend.pages.book_all',compact('books'));
+    }//end method
+
+
+    //all blog
+    public function allBlog(){
+        $blogs = Blog::orderBy('id','desc')->where('status',1)->paginate(20);
+        return view('frontend.pages.blog_all',compact('blogs'));
+    }//end method
+
+    //all teacher
+    public function allTeacher(){
+        $teachers = User::role('teacher')->get();
+        return view('frontend.pages.teacher_all',compact('teachers'));
+    }//end method
+
+    //package/membership pricing
+    public function pricing(){
+        $packages = Package::orderBy('id','desc')->get();
+        return view('frontend.pages.package_all',compact('packages'));
+    }
+
+    //category wise course
+    public function categoryWiseCourse($category_id,$slug){
+        $category = Category::where('id',$category_id)->first();
+        $courses = Course::where('course_category_id',$category_id)->paginate(20);
+        return view('frontend.pages.category_wise_course',compact('courses','category'));
+    }//end method
+
+    //about us
+    public function aboutUs(){
+        $about = AboutUs::first();
+        return view('frontend.pages.about_us',compact('about'));
+    }//end method
+
+    //contact us
+    public function contactUs(){
+        return view('frontend.pages.contact_us');
+    }
 }

@@ -8,10 +8,6 @@
             @else
                 Ebook
             @endif
-
-
-
-
         </button>
 
         <h3 class="section-heading mx-auto">
@@ -79,18 +75,14 @@
         </div>
 
         <div class="d-flex justify-content-center">
-            <button class="btn btn-lg btn-primary rounded-pill">
+            <a href="{{ route('all.book') }}" class="btn btn-lg btn-primary rounded-pill">
 
                 @if (session()->get('lang') == 'bangla')
                 সব বই দেখুন
                 @else
                 View All Books
                 @endif
-
-
-
-
-            </button>
+            </a>
             <button class="btn btn-p-18 btn-primary rounded-pill">
                 <img src="{{ asset('/') }}frontend/images/arrow.svg" alt="" />
             </button>

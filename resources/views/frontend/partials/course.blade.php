@@ -211,5 +211,23 @@
             </div>
         @endforeach
 
+        <div class="d-flex justify-content-center mt-3">
+            <a href="{{ route('all.course') }}" class="btn btn-lg btn-primary rounded-pill">
+
+                @if (session()->get('lang') == 'bangla')
+                সব কোর্স দেখুন
+                @else
+                View All Courses
+                @endif
+
+
+
+
+            </a>
+            <button class="btn btn-p-18 btn-primary rounded-pill">
+                <img src="{{ asset('/') }}frontend/images/arrow.svg" alt="" />
+            </button>
+        </div>
+
     </div>
 </section>

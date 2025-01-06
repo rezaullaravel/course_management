@@ -51,14 +51,14 @@
 
                 <div>
                     <div class="d-none d-lg-flex">
-                        <button class="btn btn-lg btn-primary rounded-pill">
+                        <a href="{{ route('about.us') }}" class="btn btn-lg btn-primary rounded-pill">
 
                             @if (session()->get('lang') == 'bangla')
                                 আমাদের সম্পর্কে পড়ুন
                             @else
                                 Read us
                             @endif
-                        </button>
+                        </a>
                         <button class="btn btn-p-18 btn-primary rounded-pill">
                             <img src="{{ asset('/') }}frontend/images/arrow.svg" alt="" />
                         </button>
