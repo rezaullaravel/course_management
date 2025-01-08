@@ -20,7 +20,7 @@
                         </div>
 
                         <div class="card-body">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered" id="example">
                                 <thead class="text-center">
                                     <tr>
                                         <th>Sl</th>

@@ -318,19 +318,25 @@
                             </div>
                         @endif
 
+                        @if (session()->get('lang') == 'english')
+                            <h5>Enroll now for three free classes</h5>
+                        @endif
+
 
                     </div>
                     <!-- buttons -->
                     <div class="d-flex mt-5">
                         @if (session()->get('lang') == 'bangla')
-                            <a href="{{ route('package.checkout',$package->id) }}" class="btn btn-lg btn-outline-success w-100 rounded-pill">
+                            <a href="{{ route('package.checkout', $package->id) }}"
+                                class="btn btn-lg btn-outline-success w-100 rounded-pill">
 
-                                এখনই কিনুন
+                                এনরোল করুন
                             </a>
                         @else
-                            <button class="btn btn-lg btn-outline-success w-100 rounded-pill">
+                            <button class="btn btn-lg btn-outline-success w-100 rounded-pill" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">
 
-                                Buy Now
+                                Enrole For Free
                             </button>
                         @endif
                         <button class="btn btn-p-18 btn-primary rounded-pill">
@@ -365,4 +371,293 @@
         </button>
       </div>
     </div> --}}
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    {{-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> --}}
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- First Form -->
+                    <div id="formStep1" class="card border-none padding-40 gap-32 mx-w-fit">
+                        <h5 class="text-center">Personal details</h5>
+                        <div class="gap-24">
+                            <!-- Name -->
+                            <div class="input-group">
+                                <input type="text" name="name" id="name"
+                                    class="form-control rounded-3 padding-12" placeholder="Name" />
+                            </div>
+                            <!-- Email -->
+                            <div class="input-group">
+                                <input type="email" name="email" id="email"
+                                    class="form-control rounded-3 padding-12" placeholder="Email address" />
+                            </div>
+                            <!-- Phone -->
+                            <div class="input-group">
+                                <input type="text" name="phone" id="phone"
+                                    class="form-control rounded-3 padding-12" placeholder="Phone" />
+                            </div>
+
+                            <!--country-->
+                            <div class="input-group">
+                                <input type="text" name="country" id="country"
+                                    class="form-control rounded-3 padding-12" placeholder="Country" />
+                            </div>
+                        </div>
+                        <button id="nextToStep2" class="btn btn-primary bg-lg w-100">Next</button>
+                    </div>
+
+                    @php
+                        $courses = App\Models\Course::where('status', 1)->select('id', 'title_en')->get();
+                    @endphp
+                    <!-- Second Form -->
+                    <div id="formStep2" class="card border-none padding-40 gap-32 date-picker d-none">
+                        <h5>Select your desired course</h5>
+                        <div class="row g-4">
+                            @foreach ($courses as $course)
+                                <div class="col-4">
+                                    <div class="checkbox-box">
+                                        <input id="course{{ $course->id }}" type="radio" name="course_id"
+                                            value="{{ $course->id }}" />
+                                        <label for="course{{ $course->id }}">{{ $course->title_en }}</label>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+
+                        <div class="row g-4">
+                            <h5>Select Teacher Type You Prefer</h5>
+                            <div class="col-4">
+                                <div class="checkbox-box">
+                                    <input id="male" name="teacher_type" type="radio" value="male" />
+                                    <label for="male">Male</label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="checkbox-box">
+                                    <input id="female" name="teacher_type" type="radio" value="female" />
+                                    <label for="female">Female</label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="checkbox-box">
+                                    <input id="other" name="teacher_type" type="radio" value="other" />
+                                    <label for="other">Other</label>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="nextToStep3" class="btn btn-primary bg-lg w-100">Next</button>
+                    </div>
+
+                    <!-- Third Form -->
+                    <div id="formStep3" class="card border-none padding-40 gap-32 date-picker d-none">
+                        <h5>Select your desired day</h5>
+                        <div class="row g-4">
+                            <div class="col-4">
+                                <div class="checkbox-box">
+                                    <input id="Saturday" name="day" type="radio" value="Saturday" />
+                                    <label for="Saturday">Saturday</label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative checkbox-box">
+                                    <input id="Sunday" name="day" type="radio" value="Sunday" />
+                                    <label for="Sunday"
+                                        class="mb-0 position-absolute top-50 start-50 translate-middle">
+                                        Sunday
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative checkbox-box">
+                                    <input id="Monday" name="day" type="radio" value="Monday" />
+                                    <label for="Monday"
+                                        class="mb-0 position-absolute top-50 start-50 translate-middle">
+                                        Monday
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative checkbox-box">
+                                    <input id="Tuesday" name="day" type="radio" value="Tuesday" />
+                                    <label for="Tuesday"
+                                        class="mb-0 position-absolute top-50 start-50 translate-middle">
+                                        Tuesday
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative checkbox-box">
+                                    <input id="Wednesday" name="day" type="radio" value="Wednesday" />
+                                    <label for="Wednesday"
+                                        class="mb-0 position-absolute top-50 start-50 translate-middle">
+                                        Wednesday
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative checkbox-box">
+                                    <input id="Thursday" name="day" type="radio" value="Thursday" />
+                                    <label for="Thursday"
+                                        class="mb-0 position-absolute top-50 start-50 translate-middle">
+                                        Thursday
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative checkbox-box">
+                                    <input id="Friday" name="day" type="radio" value="Friday" />
+                                    <label for="Friday"
+                                        class="mb-0 position-absolute top-50 start-50 translate-middle">
+                                        Friday
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="submitForm" class="btn btn-primary bg-lg w-100">Submit</button>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!--modal end-->
+
+    <script>
+        $(document).ready(function() {
+            let userId = null; // To store the ID of the user.
+
+            // Show the second form after saving the first form.
+            $('#nextToStep2').click(function(e) {
+                e.preventDefault();
+                const name = $('#name').val();
+                const email = $('#email').val();
+                const phone = $('#phone').val();
+                const country = $('#country').val();
+
+                if (!name) {
+                    alert('Please enter your name.');
+                    return;
+                }
+                if (!email) {
+                    alert('Please enter your email address.');
+                    return;
+                }
+                if (!phone) {
+                    alert('Please enter your phone number.');
+                    return;
+                }
+                if (!country) {
+                    alert('Please enter your country name.');
+                    return;
+                }
+
+                $.ajax({
+                    url: '/save-step1', // Laravel route
+                    method: 'POST',
+                    data: {
+                        name,
+                        email,
+                        phone,
+                        country,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        userId = response.user_id; // Store the user ID from the response
+                        $('#formStep1').addClass('d-none');
+                        $('#formStep2').removeClass('d-none');
+                        //console.log(response);
+                    },
+                    error: function(error) {
+                        alert('Something went wrong.');
+                    },
+                });
+            });
+
+            // Show the third form after saving the second form.
+            $('#nextToStep3').click(function(e) {
+                e.preventDefault();
+
+                // Get the selected course
+                const selectedCourse = $('input[name="course_id"]:checked').val();
+
+                // Get the selected teacher type
+                const selectedTeacherType = $('input[name="teacher_type"]:checked').val();
+
+                if (!selectedCourse) {
+                    alert('Please select a course.');
+                    return;
+                }
+
+                if (!selectedTeacherType) {
+                    alert('Please select a teacher type.');
+                    return;
+                }
+
+                $.ajax({
+                    url: '/save-step2', // Laravel route
+                    method: 'POST',
+                    data: {
+                        user_id: userId,
+                        course_id: selectedCourse, // Pass the selected course
+                        teacher_type: selectedTeacherType, // Pass the selected teacher type
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        // Assuming you want to handle the response or show some success message
+                        //console.log(response); // Check response from server
+                        $('#formStep2').addClass('d-none');
+                        $('#formStep3').removeClass('d-none');
+                    },
+                    error: function() {
+                        alert('Something went wrong.');
+                    },
+                });
+            });
+
+
+            // Submit the final form and hide the modal.
+            $('#submitForm').click(function(e) {
+                e.preventDefault();
+
+                const selectedDays = $('input[name="day"]:checked').val();
+
+                if (!selectedDays) {
+                    alert('Please select a day.');
+                    return;
+                }
+
+                $.ajax({
+                    url: '/save-step3', // Laravel route
+                    method: 'POST',
+                    data: {
+                        user_id: userId,
+                        days: selectedDays,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function() {
+                        $('#exampleModal').modal('hide');
+                        //alert('Enrollment completed successfully!');
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Enrollment completed successfully",
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                    },
+                    error: function() {
+                        alert('Something went wrong.');
+                    },
+                });
+            });
+        });
+    </script>
+
+
 </section>

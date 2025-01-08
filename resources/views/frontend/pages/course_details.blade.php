@@ -34,11 +34,6 @@
                     {{ $course->title_bn }}
                 @else
                     {{ $course->title_en }}
-                @endif /
-                @if (session()->get('lang') == 'bangla')
-                    {{ $numto->bnNum($course->price_bn) }} ৳
-                @else
-                    {{-- {{ $course->price_en }} $ --}}
                 @endif
             </h4>
 
@@ -751,6 +746,36 @@
                                     </div>
                                 @endif
                             </div>
+
+                            <p class="fw-medium">
+
+
+                                {{-- course original price show --}}
+                                @if (session()->get('lang') == 'bangla')
+                                ৳
+                                <span class="text-danger text-decoration-line-through"
+                                  >{{ $course->original_price_bn }}</span
+                                >
+                                @else
+                                $
+                                <span class="text-danger text-decoration-line-through"
+                                  >{{ $course->original_price_en }}</span
+                                >
+                                @endif
+                                {{-- course original price show --}}
+
+                                {{-- course offer price show --}}
+                                @if (session()->get('lang') == 'bangla')
+                                {{ $course->price_bn }}
+                                @else
+                                {{ $course->price_en }}
+                                @endif
+                                {{-- course offer price show --}}
+
+                              </p>
+                              @if (session()->get('lang') == 'english')
+                              <h5>Enroll now for three free classes</h5>
+                              @endif
 
                             <div class="d-flex justify-content-between">
                                 @if (session()->get('lang') == 'bangla')

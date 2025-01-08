@@ -243,6 +243,14 @@ class BookController extends Controller implements HasMiddleware
             $book->price_bn = $request->price_bn;
         }
 
+        if (!empty($request->original_price_en)) {
+            $book->original_price_en = $request->original_price_en;
+        }
+
+        if (!empty($request->original_price_bn)) {
+            $book->original_price_bn = $request->original_price_bn;
+        }
+
         if(!empty($request->paid_status)){
             $book->paid_status = $request->paid_status;
         }
@@ -552,6 +560,18 @@ class BookController extends Controller implements HasMiddleware
             $book->price_bn = $request->price_bn;
         } else {
             $book->price_bn = null;
+        }
+
+        if (!empty($request->original_price_en)) {
+            $book->original_price_en = $request->original_price_en;
+        } else {
+            $book->original_price_en = null;
+        }
+
+        if (!empty($request->original_price_bn)) {
+            $book->original_price_bn = $request->original_price_bn;
+        } else {
+            $book->original_price_bn = null;
         }
 
         if(!empty($request->paid_status)){

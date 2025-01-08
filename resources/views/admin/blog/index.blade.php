@@ -19,7 +19,7 @@
 
               <div class="card-body">
                 @if($blogs->count()>0)
-                <table class="table  table-sm">
+                <table class="table  table-responsive" id="example">
                   <thead class="text-center">
                     <tr>
                       <th>Sl</th>

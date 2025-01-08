@@ -464,13 +464,23 @@
 
 
                 <div class="form-group">
-                    <label for="feature10_bn">Price English<span class="text-danger"></span></label>
+                    <label for="feature10_bn">Offer Price English<span class="text-danger"></span></label>
                     <input type="number" class="form-control" name="price_en" value="{{ $book->price_en }}" rows="5">
                 </div>
 
                 <div class="form-group">
-                    <label for="feature10_bn">Price Bangla<span class="text-danger"></span></label>
+                    <label for="feature10_bn">Offer Price Bangla<span class="text-danger"></span></label>
                     <input type="number" class="form-control" name="price_bn" value="{{ $book->price_bn }}" rows="5">
+                </div>
+
+                <div class="form-group">
+                    <label for="feature10_bn">Original Price English<span class="text-danger"></span></label>
+                    <input type="number" class="form-control" name="original_price_en" value="{{ $book->original_price_en }}" rows="5">
+                </div>
+
+                <div class="form-group">
+                    <label for="feature10_bn">Original Price Bangla<span class="text-danger"></span></label>
+                    <input type="number" class="form-control" name="original_price_bn" value="{{ $book->original_price_bn }}" rows="5">
                 </div>
 
                 <div class="form-group">

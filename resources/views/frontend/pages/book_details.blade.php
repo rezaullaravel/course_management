@@ -40,11 +40,12 @@
                     </h5>
                     <p class="p-20 fw-medium color-primary">
                         @if ($book->paid_status == 'paid')
-                            @if (session()->get('lang') == 'bangla')
+                            {{-- @if (session()->get('lang') == 'bangla')
                                 {{ $numto->bnNum($book->price_bn) }} ৳
                             @else
                                 {{ $book->price_en }} $
-                            @endif
+                            @endif --}}
+                            <span>Paid</span>
                         @else
                         <span>Free</span>
                         @endif
@@ -318,6 +319,27 @@
                 </div>
 
                 <div class="">
+                    {{-- book  price show --}}
+                    @if ($book->paid_status == 'paid')
+                    @if (session()->get('lang') == 'bangla')
+                    ৳
+                    <span class="text-danger text-decoration-line-through"
+                      >{{ $book->original_price_bn }}</span
+                    >
+                    @else
+                    $
+                    <span class="text-danger text-decoration-line-through"
+                      >{{ $book->original_price_en }}</span
+                    >
+                    @endif
+
+                    @if (session()->get('lang') == 'bangla')
+                    {{ $book->price_bn }}
+                    @else
+                    {{ $book->price_en }}
+                    @endif
+                    @endif
+                    {{-- book  price show end--}}
                     @if ($book->paid_status == 'paid')
                         @if (session()->get('lang') == 'bangla')
                             <a href="{{ route('book.checkout', $book->id) }}" class="btn btn-lg bg-color-button">

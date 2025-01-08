@@ -25,7 +25,7 @@
 
                         <div class="card-body">
                             @if ($courses->count() > 0)
-                                <table class="table table-bordered table-sm">
+                                <table class="table table-bordered table-responsive" id="example">
                                     <thead class="text-center">
                                         <tr>
                                             <th>Sl</th>
@@ -37,8 +37,10 @@
                                             <th>Content</th>
                                             <th>Created By</th>
                                             <th>Instructor</th>
-                                            <th>Price En</th>
-                                            <th>Price Bn</th>
+                                            <th>Offer Price En</th>
+                                            <th>Offer Price Bn</th>
+                                            <th>Original Price En</th>
+                                            <th>Original Price Bn</th>
                                             <th>Created At</th>
                                             <th>Status</th>
                                             <th width="150">
@@ -74,9 +76,12 @@
                                                 <td>{!! Str::limit($row->content_en, 50) !!}</td>
                                                 <td>{{ $row->user->name }}</td>
                                                 <td>{{ $row->teacher->name }}</td>
-                                                <td>{{ $row->price_en }}</td>
+                                                <td>{{ $row->price_en }} $</td>
                                                 {{-- <td>{{$numto->bnNum($row->price_bn) }}</td> --}}
-                                                <td>{{ $row->price_bn }}</td>
+                                                <td>{{ $row->price_bn }}  <span class="h4">৳</span></td>
+                                                <td>{{ $row->original_price_en }} $</td>
+
+                                                <td>{{ $row->original_price_bn }}  <span class="h4">৳</span></td>
                                                 <td>{{ date('d-m-Y', strtotime($row->created_at)) }}</td>
                                                 <td>
                                                     @if ($row->status == 1)

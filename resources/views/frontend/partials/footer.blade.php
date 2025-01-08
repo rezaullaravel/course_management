@@ -3,32 +3,60 @@
         <div class="join-us">
             <div class="join-us-bg gap-24">
                 <h2>
-                    Stay With Us <br />
-                    Update For Future
+
+
+                    @if (session()->get('lang') == 'bangla')
+                        আমাদের সাথে থাকুন <br />
+                        ভবিষ্যতের জন্য আপডেট
+                    @else
+                        Stay With Us <br />
+                        Update For Future
+                    @endif
                 </h2>
                 <p>
-                    Embark on a journey of Islamic knowledge, guided by trusted
-                    scholars to inspire hearts and minds, enriching faith and
-                    understanding
+
+                    @if (session()->get('lang') == 'bangla')
+                        বিশ্বস্ত দ্বারা পরিচালিত ইসলামী জ্ঞানের যাত্রা শুরু করুন
+                        পণ্ডিতদের হৃদয় ও মনকে অনুপ্রাণিত করতে, বিশ্বাসকে সমৃদ্ধ করতে এবং
+                        বোঝা
+                    @else
+                        Embark on a journey of Islamic knowledge, guided by trusted
+                        scholars to inspire hearts and minds, enriching faith and
+                        understanding
+                    @endif
                 </p>
 
                 <div class="mx-lg-auto">
-                    <div class="gap-12 flex-md-row mx-auto w-100">
-                        <div class="input-group rounded-pill">
-                            <span class="input-group-text rounded-start-pill bg-white border-0 ps-4" id="basic-addon1">
-                                <img src="{{ asset('/') }}frontend//images/mail.svg" alt="" /></span>
-                            <input type="text" class="form-control border-0 ps-0" placeholder="Username"
-                                aria-label="Username" aria-describedby="basic-addon1" />
+                    <form action="{{ route('newsletter.store') }}" method="post">
+                        @csrf
+                        <div class="gap-12 flex-md-row mx-auto w-100">
+
+                            <div class="input-group rounded-pill">
+                                <span class="input-group-text rounded-start-pill bg-white border-0 ps-4"
+                                    id="basic-addon1">
+                                    <img src="{{ asset('/') }}frontend//images/mail.svg" alt="" /></span>
+                                <input type="text" name="email_or_phone" required class="form-control border-0 ps-0"
+                                    @if (session()->get('lang') == 'bangla') placeholder="ইমেল বা ফোন"
+                            @else
+                            placeholder="Email" @endif
+                                    aria-label="Username" aria-describedby="basic-addon1" />
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <button class="btn btn-lg btn-primary rounded-pill text-nowrap">
+
+                                    @if (session()->get('lang') == 'bangla')
+                                        আমাদের সাথে যোগ দিন
+                                    @else
+                                        Join Us
+                                    @endif
+                                </button>
+                                <button class="btn btn-p-18 btn-primary rounded-pill">
+                                    <img src="{{ asset('/') }}frontend/images/arrow.svg" alt="" />
+                                </button>
+                            </div>
+
                         </div>
-                        <div class="d-flex justify-content-center">
-                            <button class="btn btn-lg btn-primary rounded-pill text-nowrap">
-                                Join Us
-                            </button>
-                            <button class="btn btn-p-18 btn-primary rounded-pill">
-                                <img src="{{ asset('/') }}frontend/images/arrow.svg" alt="" />
-                            </button>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -118,7 +146,8 @@
                             @foreach ($courses as $course)
                                 <div class="gap-12">
                                     <p>
-                                        <a href="{{ route('course-details', [
+                                        <a
+                                            href="{{ route('course-details', [
                                                 'id' => $course->id,
                                                 'slug' => $course->slug,
                                             ]) }}">

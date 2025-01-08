@@ -99,10 +99,17 @@
                                     @if (session()->get('lang') == 'bangla') placeholder="আপনার ইমেইল এড্রেস"
                 @else
                 placeholder="Your emai address" @endif />
+
                                 <input type="text" name="phone" required class="form-control py-3 px-4 rounded-3" id=""
                                     @if (session()->get('lang') == 'bangla') placeholder="ফোন নাম্বার"
                 @else
                 placeholder="Phone number" @endif />
+
+                <input type="text" name="country" required class="form-control py-3 px-4 rounded-3" id=""
+                                    @if (session()->get('lang') == 'bangla') placeholder="দেশের নাম"
+                @else
+                placeholder="Country Name" @endif />
+
                                 <input type="text" name="subject" required class="form-control py-3 px-4 rounded-3" id=""
                                     @if (session()->get('lang') == 'bangla') placeholder="বিষয়"
                 @else

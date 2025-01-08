@@ -16,16 +16,17 @@
 
               <div class="card-body">
                 @if($messages->count()>0)
-                <table class="table  table-sm">
-                  <thead class="text-center">
+                <table class="table table-bordered" id="example">
+                  <thead>
                     <tr>
-                      <th>Sl</th>
-                      <th>Sender Name </th>
-                      <th>Email</th>
-                      <th>Phone </th>
-                      <th>Subject </th>
-                      <th>Message</th>
-                      <th>Status</th>
+                      <th class="text-center">Sl</th>
+                      <th class="text-center">Sender Name </th>
+                      <th class="text-center">Email</th>
+                      <th class="text-center">Phone </th>
+                      <th class="text-center">Country</th>
+                      <th class="text-center">Subject </th>
+                      <th class="text-center">Message</th>
+                      <th class="text-center">Status</th>
                     </tr>
                   </thead>
 
@@ -36,6 +37,7 @@
                       <td>{{$row->name}}</td>
                       <td>{{$row->email}}</td>
                       <td>{{$row->phone}}</td>
+                      <td>{{$row->country}}</td>
                       <td>{{$row->subject}}</td>
                       <td>{{$row->message}}</td>
                       <td>

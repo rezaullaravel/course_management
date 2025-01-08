@@ -15,7 +15,7 @@
 
                         <div class="card-body">
                             @if ($courseOrders->count() > 0)
-                                <table class="table table-bordered table-responsive">
+                                <table class="table table-bordered table-responsive" id="example">
                                     <thead class="text-center">
                                         <tr>
                                             <th>Sl</th>

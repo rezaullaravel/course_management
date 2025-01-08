@@ -17,6 +17,7 @@ use App\Http\Controllers\Backend\WhystudyUsController;
 use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Backend\ContactMessageController;
 use App\Http\Controllers\Backend\CourseCategoryController;
+use App\Http\Controllers\Backend\NewsletterViewController;
 use App\Http\Controllers\Backend\PaymentGatewayController;
 
 
@@ -178,5 +179,8 @@ Route::middleware('admin')->prefix('admin')->group(function(){
 
      //class link
      Route::get('class-link',[NoticeController::class,'classLink'])->name('user.class-link');
+
+     //newsletter
+     Route::get('newsletter-list',[NewsletterViewController::class,'newsletterList'])->name('admin.newsletter.index');
 });
 /*=====================admin panel route end ========================== */

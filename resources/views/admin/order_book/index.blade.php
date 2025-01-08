@@ -21,7 +21,7 @@
 
                         <div class="card-body">
                             @if ($orderedBooks->count() > 0)
-                                <table class="table table-bordered table-sm">
+                                <table class="table table-bordered table-responsive" id="example">
                                     <thead class="text-center">
                                         <tr>
                                             <th>Sl</th>

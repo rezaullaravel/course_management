@@ -34,6 +34,7 @@
   --color-background: #f4f5f6;
 
   --color-gray: #545454;
+  --color-gray-100: #3d3d3d;
   --color-border: #d6d6d6;
   --color-border-secondary: #cfe5d2;
   --color-text: #171717;
@@ -44,6 +45,8 @@ body {
   color: var(--color-gray);
   background-color: var(--color-background);
   overflow-x: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -225,7 +228,7 @@ p {
 }
 
 .btn-p-18 {
-  padding: 18px;
+  padding: 16px;
 }
 
 .btn-primary {
@@ -405,10 +408,36 @@ section {
   min-width: max-content;
 }
 
+.custom-scrollbar {
+  height: 90px;
+  ::-webkit-scrollbar {
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #e8f4ec;
+    border: 0.4px solid #60e18d;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #bde2c9;
+  }
+}
+
 /* -------------------------------------------------------------------------- */
 /*                                   Header                                   */
 /* -------------------------------------------------------------------------- */
+.top-header {
+  background: var(--color-gray-100);
+  .i-white {
+    filter: invert(1) brightness(2);
+  }
+  a {
+    color: white;
+  }
+}
+
 header {
+  margin-top: -1px;
   nav {
     box-shadow: 0px 4px 6px 0px #00000014;
     padding: 20px;
@@ -469,20 +498,22 @@ header {
   .hero-left-card {
     position: absolute;
     left: 0;
-    top: calc(20%);
+    top: 20%;
+    max-width: 14vw;
 
     .spread {
       position: absolute;
-      left: 80%;
-      top: 5px;
-      max-width: 10vw;
+      left: 82%;
+      top: 12px;
+      max-width: 5vw;
     }
   }
 
   .hero-right-card {
     position: absolute;
     right: 0;
-    top: 150px;
+    top: 18%;
+    max-width: 14vw;
   }
 
   .text-box {
@@ -551,8 +582,12 @@ header {
         width: 1px;
         height: auto;
         min-height: fit-content;
-
-        border: 1px solid blac;
+        background: linear-gradient(
+          0deg,
+          rgba(186, 186, 186, 0) 0%,
+          #d6d6d6 51.5%,
+          rgba(186, 186, 186, 0) 100%
+        );
       }
     }
 
@@ -571,7 +606,7 @@ header {
     .bottom {
       .custom-card {
         padding: 15px;
-        border: 1px solid transparent;
+        border: none;
         background: linear-gradient(
           129.39deg,
           rgba(0, 163, 46, 0.077) 14.71%,
@@ -672,6 +707,14 @@ header {
   .card {
     width: 94%;
     bottom: 12px;
+
+    h5 {
+      font-size: 20px;
+    }
+
+    p {
+      font-size: 14px;
+    }
   }
 }
 
@@ -886,11 +929,19 @@ header {
         border: 1px solid var(--color-border);
       }
 
+      .input-group:focus-within {
+        border-color: var(--color-primary);
+      }
+
       input {
         padding: 8px 28px;
         border: 1px solid;
         border-radius: 100px;
         min-width: 408px;
+
+        &:focus {
+          box-shadow: none !important;
+        }
       }
     }
   }

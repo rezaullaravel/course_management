@@ -326,6 +326,14 @@ class CourseController extends Controller implements HasMiddleware
             $course->price_bn = $request->price_bn;
         }
 
+        if (!empty($request->original_price_en)) {
+            $course->original_price_en = $request->original_price_en;
+        }
+
+        if (!empty($request->original_price_bn)) {
+            $course->original_price_bn = $request->original_price_bn;
+        }
+
         $course->save();
         return redirect('admin/course/post/list')->with('message','Course  Created Successfully');
      }//end method
@@ -624,6 +632,14 @@ class CourseController extends Controller implements HasMiddleware
         }
         if (!empty($request->price_bn)) {
             $course->price_bn = $request->price_bn;
+        }
+
+        if (!empty($request->original_price_en)) {
+            $course->original_price_en = $request->original_price_en;
+        }
+
+        if (!empty($request->original_price_bn)) {
+            $course->original_price_bn = $request->original_price_bn;
         }
 
         $course->save();

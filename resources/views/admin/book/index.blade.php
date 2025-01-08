@@ -25,7 +25,7 @@
 
                         <div class="card-body">
                             @if ($books->count() > 0)
-                                <table class="table table-bordered table-sm">
+                                <table class="table table-bordered table-responsive" id="example">
                                     <thead class="text-center">
                                         <tr>
                                             <th>Sl</th>
@@ -35,8 +35,10 @@
                                             <th>Image</th>
                                             <th>Image2</th>
                                             <th>Uploaded By</th>
-                                            <th>Price En</th>
-                                            <th>Price Bn</th>
+                                            <th>Offer Price En</th>
+                                            <th>Offer Price Bn</th>
+                                            <th>Original Price En</th>
+                                            <th>Original Price Bn</th>
                                             <th>Created At</th>
                                             <th>Status</th>
                                             <th width="150">
@@ -71,7 +73,7 @@
                                                 </td>
                                                 <td>{{ $row->user->name }}</td>
                                                 <td>
-                                                    @if (!empty($row->price_en))
+                                                    @if (!empty($row->price_en)) $
                                                         {{ $row->price_en }}
                                                     @else
                                                         N/A
@@ -79,8 +81,23 @@
                                                 </td>
                                                 {{-- <td>{{$numto->bnNum($row->price_bn) }}</td> --}}
                                                 <td>
-                                                    @if (!empty($row->price_bn))
+                                                    @if (!empty($row->price_bn)) <span class="h4">৳</span>
                                                         {{ $row->price_bn }}
+                                                    @else
+                                                        N/A
+                                                    @endif
+                                                </td>
+
+                                                <td>
+                                                    @if (!empty($row->original_price_en)) $
+                                                        {{ $row->original_price_en }}
+                                                    @else
+                                                        N/A
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if (!empty($row->original_price_bn)) <span class="h4">৳</span>
+                                                        {{ $row->original_price_bn }}
                                                     @else
                                                         N/A
                                                     @endif

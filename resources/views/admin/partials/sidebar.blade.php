@@ -304,6 +304,20 @@
                 @endif
                 {{-- contact us message --}}
 
+                {{-- newsletter --}}
+                @if (auth()->user()->can('join-us-view'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.newsletter.index') }}"
+                            class="nav-link {{ request()->is('admin/newsletter-list*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-chart-pie"></i>
+                            <p>
+                                Join Us
+                            </p>
+                        </a>
+                    </li>
+                @endif
+                {{-- newsletter --}}
+
                 {{-- course --}}
                 {{-- @if (auth()->user()->can('view-course-category') || auth()->user()->can('view-course'))
                     <li class="nav-item {{ request()->is('admin/course*') ? 'menu-open' : '' }}">

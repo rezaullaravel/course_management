@@ -4,6 +4,8 @@ use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\LanguageChangeController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontHomeController;
+use App\Http\Controllers\Frontend\EnrollmentController;
+use App\Http\Controllers\Frontend\NewsletterController;
 use App\Http\Controllers\Frontend\ApplyCouponController;
 use App\Http\Controllers\Frontend\FrontContactController;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -83,6 +85,14 @@ Route::get('/contact-us',[FrontHomeController::class,'contactUs'])->name('contac
 
 //store contact message
 Route::post('/store-contact-message',[FrontContactController::class,'storeContactMessage'])->name('store.contact.message');
+
+//newsletter
+Route::post('/newsletter-store',[NewsletterController::class,'store'])->name('newsletter.store');
+
+//free course enrole from english site
+Route::post('/save-step1', [EnrollmentController::class, 'saveStep1']);
+Route::post('/save-step2', [EnrollmentController::class, 'saveStep2']);
+Route::post('/save-step3', [EnrollmentController::class, 'saveStep3']);
 
 //language change
 Route::get('/lang-eng',[LanguageChangeController::class,'english'])->name('lang.english');
