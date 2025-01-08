@@ -92,6 +92,7 @@ Route::post('/newsletter-store',[NewsletterController::class,'store'])->name('ne
 //free course enrole from english site
 Route::post('/save-step1', [EnrollmentController::class, 'saveStep1']);
 Route::post('/save-step2', [EnrollmentController::class, 'saveStep2']);
+// Route::post('/insert-step2', [EnrollmentController::class, 'insertStep2']);
 Route::post('/save-step3', [EnrollmentController::class, 'saveStep3']);
 
 //language change

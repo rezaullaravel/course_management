@@ -783,9 +783,10 @@
                                         এনরোল করুন
                                     </a>
                                 @else
-                                    <a href="" class="btn btn-lg btn-primary rounded-pill w-100">
+                                    <button type="button" class="btn btn-lg btn-primary rounded-pill w-100" data-bs-toggle="modal"
+                                    data-bs-target="#myModal">
                                         Enrole Now
-                                    </a>
+                                    </button>
                                 @endif
                                 <button class="btn btn-p-18 btn-primary rounded-pill">
                                     <img src="{{ asset('/') }}frontend/images/arrow.svg" alt="" />
@@ -985,4 +986,350 @@
 
     <!-- Blog -->
     @include('frontend.partials.blog')
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    {{-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> --}}
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- First Form -->
+                    <div id="__formStep1" class="card border-none padding-40 gap-32 mx-w-fit">
+                        <h5 class="text-center">Personal details</h5>
+                        <div class="gap-24">
+                            <!-- Name -->
+                            <div class="input-group">
+                                <input type="text" name="__name" id="__name"
+                                    class="form-control rounded-3 padding-12" placeholder="Name" />
+                            </div>
+                            <!-- Email -->
+                            <div class="input-group">
+                                <input type="email" name="__email" id="__email"
+                                    class="form-control rounded-3 padding-12" placeholder="Email address" />
+                            </div>
+                            <!-- Phone -->
+                            <div class="input-group">
+                                <input type="text" name="__phone" id="__phone"
+                                    class="form-control rounded-3 padding-12" placeholder="Phone" />
+                            </div>
+
+                            <!--country-->
+                            <div class="input-group">
+                                <input type="text" name="__country" id="__country"
+                                    class="form-control rounded-3 padding-12" placeholder="Country" />
+                            </div>
+                        </div>
+                        <button id="__nextToStep2" class="btn btn-primary bg-lg w-100">Next</button>
+                    </div>
+
+                    @php
+                        $courses = App\Models\Course::where('status', 1)->select('id', 'title_en')->get();
+                    @endphp
+                    <!-- Second Form -->
+                    <div id="__formStep2" class="card border-none padding-40 gap-32 date-picker d-none">
+                        <h5>Select your desired course</h5>
+                        <div class="row g-4">
+                            @foreach ($courses as $course)
+                                <div class="col-4">
+                                    <div class="position-relative checkbox-box">
+                                        <input id="rcourse{{ $course->id }}" name="rcourse_id" type="checkbox"
+                                            value="{{ $course->id }}" />
+                                        <label for="rcourse{{ $course->id }}"
+                                            class="mb-0 position-absolute top-50 start-50 translate-middle">
+                                            {{ $course->title_en }}
+                                        </label>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+
+                        <div class="row g-4">
+                            <h5>Select Teacher Type You Prefer</h5>
+
+
+                            <div class="col-4">
+                                <div class="position-relative checkbox-box">
+                                    <input id="rmale" name="rteacher_type" type="checkbox" value="male" />
+                                    <label for="rmale"
+                                        class="mb-0 position-absolute top-50 start-50 translate-middle">
+                                        Male
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-4">
+                                <div class="position-relative checkbox-box">
+                                    <input id="rfemale" name="rteacher_type" type="checkbox" value="female" />
+                                    <label for="rfemale"
+                                        class="mb-0 position-absolute top-50 start-50 translate-middle">
+                                        Female
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-4">
+                                <div class="position-relative checkbox-box">
+                                    <input id="rother" name="rteacher_type" type="checkbox" value="other" />
+                                    <label for="rother"
+                                        class="mb-0 position-absolute top-50 start-50 translate-middle">
+                                        Other
+                                    </label>
+                                </div>
+                            </div>
+
+
+
+                            <button id="rnextToStep3" class="btn btn-primary bg-lg w-100">Next</button>
+                        </div>
+
+                    </div>
+
+                    <!--implement third form here-->
+                    <div id="__form3" class="card border-none padding-40 gap-32 date-picker d-none">
+                        <h5>Select your desired day</h5>
+                        <div class="row g-4">
+                            <div class="col-4">
+                                <div class="position-relative checkbox-box">
+                                    <input id="__Saturday" name="__day" type="checkbox" value="Saturday" />
+                                    <label for="__Saturday"
+                                        class="mb-0 position-absolute top-50 start-50 translate-middle">
+                                        Saturday
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative checkbox-box">
+                                    <input id="__Sunday" name="__day" type="checkbox" value="Sunday" />
+                                    <label for="__Sunday"
+                                        class="mb-0 position-absolute top-50 start-50 translate-middle">
+                                        Sunday
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative checkbox-box">
+                                    <input id="__Monday" name="__day" type="checkbox" value="Monday" />
+                                    <label for="__Monday"
+                                        class="mb-0 position-absolute top-50 start-50 translate-middle">
+                                        Monday
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative checkbox-box">
+                                    <input id="__Tuesday" name="__day" type="checkbox" value="Tuesday" />
+                                    <label for="__Tuesday"
+                                        class="mb-0 position-absolute top-50 start-50 translate-middle">
+                                        Tuesday
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative checkbox-box">
+                                    <input id="__Wednesday" name="__day" type="checkbox" value="Wednesday" />
+                                    <label for="__Wednesday"
+                                        class="mb-0 position-absolute top-50 start-50 translate-middle">
+                                        Wednesday
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative checkbox-box">
+                                    <input id="__Thursday" name="__day" type="checkbox" value="Thursday" />
+                                    <label for="__Thursday"
+                                        class="mb-0 position-absolute top-50 start-50 translate-middle">
+                                        Thursday
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative checkbox-box">
+                                    <input id="__Friday" name="__day" type="checkbox" value="Friday" />
+                                    <label for="__Friday"
+                                        class="mb-0 position-absolute top-50 start-50 translate-middle">
+                                        Friday
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="rsubmitForm" class="btn btn-primary bg-lg w-100">Submit</button>
+                    </div>
+                    <!--implement third form here end-->
+
+
+                </div>
+            </div>
+        </div>
+        <!--modal end-->
+<!-- Include required scripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            // Listen for changes on checkboxes with name="course_id"
+            $('input[name="rcourse_id"]').on('change', function() {
+                if ($(this).prop('checked')) {
+                    // Uncheck all other checkboxes when one is checked
+                    $('input[name="rcourse_id"]').not(this).prop('checked', false);
+                }
+            });
+        </script>
+        <script>
+            // Listen for changes on checkboxes with name="teacher_type"
+            $('input[name="rteacher_type"]').on('change', function() {
+                if ($(this).prop('checked')) {
+                    // Uncheck all other checkboxes when one is checked
+                    $('input[name="rteacher_type"]').not(this).prop('checked', false);
+                }
+            });
+        </script>
+
+        <script>
+            // Listen for changes on checkboxes with name="day"
+            $('input[name="__day"]').on('change', function() {
+                if ($(this).prop('checked')) {
+                    // Uncheck all other checkboxes when one is checked
+                    $('input[name="__day"]').not(this).prop('checked', false);
+                }
+            });
+        </script>
+
+
+
+        <script>
+            $(document).ready(function() {
+                let ruserId = null; // To store the ID of the user.
+
+                // Show the second form after saving the first form.
+                $('#__nextToStep2').click(function(e) {
+                    e.preventDefault();
+                    const name = $('#__name').val();
+                    const email = $('#__email').val();
+                    const phone = $('#__phone').val();
+                    const country = $('#__country').val();
+
+                    if (!name) {
+                        alert('Please enter your name.');
+                        return;
+                    }
+                    if (!email) {
+                        alert('Please enter your email address.');
+                        return;
+                    }
+                    if (!phone) {
+                        alert('Please enter your phone number.');
+                        return;
+                    }
+                    if (!country) {
+                        alert('Please enter your country name.');
+                        return;
+                    }
+
+                    $.ajax({
+                        url: '/save-step1', // Laravel route
+                        method: 'POST',
+                        data: {
+                            name,
+                            email,
+                            phone,
+                            country,
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            ruserId = response.user_id; // Store the user ID from the response
+                            $('#__formStep1').addClass('d-none');
+                            $('#__formStep2').removeClass('d-none');
+                            //console.log(response);
+                        },
+                        error: function(error) {
+                            alert('Something went wrong.');
+                        },
+                    });
+                });
+
+                // Show the third form after saving the second form.
+                $('#rnextToStep3').click(function(e) {
+                    e.preventDefault();
+
+                    // Get the selected course
+                    const selectedCourse = $('input[name="rcourse_id"]:checked').val();
+
+                    // Get the selected teacher type
+                    const selectedTeacherType = $('input[name="rteacher_type"]:checked').val();
+
+                    if (!selectedCourse) {
+                        alert('Please select a course.');
+                        return;
+                    }
+
+                    if (!selectedTeacherType) {
+                        alert('Please select a teacher type.');
+                        return;
+                    }
+
+                    $.ajax({
+                        url: '/save-step2', // Laravel route
+                        method: 'POST',
+                        data: {
+                            user_id: ruserId,
+                            course_id: selectedCourse, // Pass the selected course
+                            teacher_type: selectedTeacherType, // Pass the selected teacher type
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            // Assuming you want to handle the response or show some success message
+                            //console.log(response); // Check response from server
+                            $('#__formStep2').addClass('d-none');
+                            $('#__form3').removeClass('d-none');
+
+                        },
+                        error: function() {
+                            alert('Something went wrong.');
+                        },
+                    });
+                });
+
+
+                // Submit the final form and hide the modal.
+                $('#rsubmitForm').click(function(e) {
+                    e.preventDefault();
+
+                    const selectedDays = $('input[name="__day"]:checked').val();
+
+                    if (!selectedDays) {
+                        alert('Please select a day.');
+                        return;
+                    }
+
+                    $.ajax({
+                        url: '/save-step3', // Laravel route
+                        method: 'POST',
+                        data: {
+                            user_id: ruserId,
+                            days: selectedDays,
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function() {
+                            $('#myModal').modal('hide');
+                            //alert('Enrollment completed successfully!');
+
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "Enrollment completed successfully",
+                                showConfirmButton: false,
+                                timer: 3000 // Show for 5 seconds
+                            }).then(() => {
+                                // This will be executed after the timer finishes
+                                window.location.reload(); // Reload the page after 5 seconds
+                            });
+                        },
+                        error: function() {
+                            alert('Something went wrong.');
+                        },
+                    });
+                });
+            });
+        </script>
 @endsection

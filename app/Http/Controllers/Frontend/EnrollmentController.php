@@ -28,7 +28,7 @@ class EnrollmentController extends Controller
     {
 
 
-        $enrollment = Enrollment::findOrFail($request->user_id);
+         $enrollment = Enrollment::findOrFail($request->user_id);
 
         // Assuming the user has a relationship with courses
         $enrollment->course_id = $request->course_id; // Sync the selected course
@@ -40,7 +40,7 @@ class EnrollmentController extends Controller
         return response()->json(['message' => 'Course Id and teacher type saved success',
         'user_id' => $enrollment->id,
     ]);
-    
+
     }
 
     public function saveStep3(Request $request)
@@ -51,4 +51,6 @@ class EnrollmentController extends Controller
 
         return response()->json(['success' => true]);
     }
+
+
 }
