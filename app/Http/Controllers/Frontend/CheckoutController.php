@@ -19,7 +19,7 @@ class CheckoutController extends Controller
                 $course = Course::find($id);
             return view('frontend.pages.course_checkout',compact('course'));
             } else {
-                abort(404, 'Page not available in the selected language.');
+                abort(403, 'Page not available in the selected language.');
             }
 
         } else {
@@ -35,7 +35,7 @@ class CheckoutController extends Controller
                 $package = Package::find($id);
             return view('frontend.pages.package_checkout',compact('package'));
             } else {
-                abort(404, 'Page not available in the selected language.');
+                abort(403, 'Page not available in the selected language.');
             }
 
         } else {
@@ -51,7 +51,7 @@ class CheckoutController extends Controller
                 $book = Book::find($id);
             return view('frontend.pages.book_checkout',compact('book'));
             } else {
-                abort(404, 'Page not available in the selected language.');
+                abort(403, 'Page not available in the selected language.');
             }
 
         } else {

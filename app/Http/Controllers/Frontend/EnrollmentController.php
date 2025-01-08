@@ -26,22 +26,21 @@ class EnrollmentController extends Controller
 
     public function saveStep2(Request $request)
     {
-        $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'course_id' => 'required|exists:courses,id', // Validate the selected course
-            'teacher_type' => 'required|in:male,female,other', // Validate the teacher type
-        ]);
 
-        $user = Enrollment::findOrFail($request->user_id);
+
+        $enrollment = Enrollment::findOrFail($request->user_id);
 
         // Assuming the user has a relationship with courses
-        $user->course_id = $request->course_id; // Sync the selected course
+        $enrollment->course_id = $request->course_id; // Sync the selected course
 
         // Save the selected teacher type (you can store it in the User model or elsewhere)
-        $user->teacher_type = $request->teacher_type;
-        $user->save();
+        $enrollment->teacher_type = $request->teacher_type;
+        $enrollment->save();
 
-        return response()->json(['message' => 'Course Id and teacher type saved success']);
+        return response()->json(['message' => 'Course Id and teacher type saved success',
+        'user_id' => $enrollment->id,
+    ]);
+    
     }
 
     public function saveStep3(Request $request)
