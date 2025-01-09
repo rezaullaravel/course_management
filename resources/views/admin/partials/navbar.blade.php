@@ -8,6 +8,11 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a href="{{ url('/') }}" class="nav-link btn-primary btn-sm rounded-circle text-light">
+              <strong>Visit Site</strong>
+            </a>
+          </li>
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>

@@ -15,4 +15,8 @@ class Enrollment extends Model
         'teacher_type',
         'days',
     ];
+
+    public function course(){
+        return $this->belongsTo(Course::class,'course_id')->withDefault();
+    }
 }

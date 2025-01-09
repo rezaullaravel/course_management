@@ -43,30 +43,30 @@
                     <div class="rounded-top-pill rounded-bottom-5 position-relative teacher-card">
                         <img src="{{ asset($teacher->image) }}" alt=""
                             class="rounded-top-pill rounded-bottom-2 object-fit-cover" width="100%" height="400px" />
-                        <div
-                            class="card border-0 position-absolute start-50 translate-middle-x bg-white flex flex-row justify-content-between align-items-center p-2 rounded-1">
-                            <div>
-                                <h5>
-                                    @if (session()->get('lang') == 'bangla')
-                                        {{ $teacher->name_bn }}
-                                    @else
-                                        {{ $teacher->name_en }}
-                                    @endif
+                        <div class="card border-0 position-absolute start-50 translate-middle-x p-2 rounded-1">
+                            <h5>
+                                @if (session()->get('lang') == 'bangla')
+                                    {{ $teacher->name_bn }}
+                                @else
+                                    {{ $teacher->name }}
+                                @endif
 
-                                </h5>
-                                <p>
-                                    @if (session()->get('lang') == 'bangla')
-                                        {{ $teacher->teacher_degree_inst_bn }}
-                                    @else
-                                        {{ $teacher->teacher_degree_inst }}
-                                    @endif
-                                    {{-- ({{ $teacher->t_degree_subject }}) --}}
-                                </p>
-                            </div>
-                            <div>
-                                <a href="{{ $teacher->teacher_linkedin }}" target="_blank"> <img
-                                        src="{{ asset('/') }}frontend/images/linkedin.svg" alt="" /></a>
-                            </div>
+                            </h5>
+                            <p>
+                                @if (session()->get('lang') == 'bangla')
+                                    {{ $teacher->teacher_degree_inst_bn }}
+                                @else
+                                    {{ $teacher->teacher_degree_inst }}
+                                @endif
+
+                            </p>
+                            <p>
+                                @if (session()->get('lang') == 'bangla')
+                                {{ $teacher->t_degree_subject_bn }}
+                            @else
+                                {{ $teacher->t_degree_subject }}
+                            @endif
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -78,12 +78,12 @@
             <a href="{{ route('all.teacher') }}" class="btn btn-lg btn-primary rounded-pill">
 
                 @if (session()->get('lang') == 'bangla')
-                সকল শিক্ষকদের দেখুন
+                    সকল শিক্ষকদের দেখুন
                 @else
-                See All Teachers
+                    See All Teachers
                 @endif
             </a>
-            <a class="btn btn-p-18 btn-primary rounded-pill">
+            <a href="{{ route('all.teacher') }}" class="btn btn-p-18 btn-primary rounded-pill">
                 <img src="{{ asset('/') }}frontend/images/arrow.svg" alt="" />
             </a>
         </div>

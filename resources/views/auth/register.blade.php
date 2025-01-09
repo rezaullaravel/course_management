@@ -64,7 +64,14 @@
                                             @if (session()->get('lang') == 'bangla') placeholder="ইমেইল এড্রেস"
                                             @else
                                             placeholder="email address" @endif />
+
                                     </div>
+
+                                    <p class="text-danger">
+                                        @error('email')
+                                            <span>{{ $message }}</span>
+                                        @enderror
+                                    </p>
 
                                     <!-- password -->
                                     <div class="input-group">

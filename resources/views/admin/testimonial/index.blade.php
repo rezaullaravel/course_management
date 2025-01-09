@@ -26,6 +26,7 @@
                       <th>Title</th>
                       <th>Name</th>
                       <th>Profession</th>
+                      <th>Country</th>
                       <th>Logo</th>
                       <th>Image</th>
                        <th width="150">
@@ -43,6 +44,7 @@
                       <td>{{$row->title_en}}</td>
                       <td>{{$row->name_en}}</td>
                       <td>{{$row->profession_en}}</td>
+                      <td>{{$row->country_en}}</td>
                       <td>
                         <img src="{{ asset($row->logo) }}" alt="" width="80" height="80">
                       </td>

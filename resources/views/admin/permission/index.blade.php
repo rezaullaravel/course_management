@@ -12,7 +12,8 @@
               <div class="card-header">
                 <h4>Permission List
                 @can('create permission')
-                 <a href="{{route('admin.permission.create')}}" class="btn btn-primary btn-sm" style="float:right;"><i class="las la-plus-square"></i>Create Permission</a> 
+                 {{-- <a href="{{route('admin.permission.create')}}" class="btn btn-primary btn-sm" style="float:right;"><i class="las la-plus-square"></i>Create Permission</a> --}}
+                 <a href="#" class="btn btn-primary btn-sm" style="float:right;"><i class="las la-plus-square"></i>Create Permission</a>
                 @endcan
                 </h4>
               </div>
@@ -38,13 +39,19 @@
                       <td>{{$row->name}}</td>
                       <td>
                         @can('edit permission')
-                         <a href="{{route('admin.permission.edit',$row->id)}}" class="btn btn-primary btn-sm" title="edit">
+                         {{-- <a href="{{route('admin.permission.edit',$row->id)}}" class="btn btn-primary btn-sm" title="edit">
                           <i class="las la-pen"></i>
-                        </a> 
+                        </a> --}}
+                        <a href="#" class="btn btn-primary btn-sm" title="edit">
+                            <i class="las la-pen"></i>
+                          </a>
                         @endcan
 
                          @can('delete permission')
-                         <a href="{{route('admin.permission.delete',$row->id)}}" class="btn btn-danger btn-sm" title="delete" onclick="confirmation(event)">
+                         {{-- <a href="{{route('admin.permission.delete',$row->id)}}" class="btn btn-danger btn-sm" title="delete" onclick="confirmation(event)">
+                          <i class="las la-trash"></i>
+                         </a> --}}
+                          <a href="#" class="btn btn-danger btn-sm" title="delete">
                           <i class="las la-trash"></i>
                          </a>
                         @endcan
@@ -56,10 +63,10 @@
               </div>
             </div>
           </div>
-          
+
         </div>
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </section>
-    
+
 @endsection

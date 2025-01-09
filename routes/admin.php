@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\CourseController;
 use App\Http\Controllers\Backend\NoticeController;
 use App\Http\Controllers\Backend\AboutUsController;
 use App\Http\Controllers\Backend\PackageController;
+use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\AllOrderController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\PermissionController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\Backend\ContactMessageController;
 use App\Http\Controllers\Backend\CourseCategoryController;
 use App\Http\Controllers\Backend\NewsletterViewController;
 use App\Http\Controllers\Backend\PaymentGatewayController;
+use App\Http\Controllers\Backend\EnrolementEnSiteController;
 
 
 /*=====================user admin authentication========================== */
@@ -182,5 +184,13 @@ Route::middleware('admin')->prefix('admin')->group(function(){
 
      //newsletter
      Route::get('newsletter-list',[NewsletterViewController::class,'newsletterList'])->name('admin.newsletter.index');
+
+     //english site enrolement view
+     Route::get('enrolment-list',[EnrolementEnSiteController::class,'index'])->name('admin.enrolment.index');
+
+     //profie
+     Route::get('profile-view',[ProfileController::class,'profileView'])->name('admin.profile.view');
+     Route::post('profile-update/{id}',[ProfileController::class,'profileUpdate'])->name('admin.profile.update');
+    //  Route::get('profile-password-change',[ProfileController::class,'passwordChange'])->name('admin.profile-password.change');
 });
 /*=====================admin panel route end ========================== */

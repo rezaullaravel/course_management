@@ -58,6 +58,16 @@
                   </div>
 
                   <div class="form-group">
+                    <label>Country English<span class="text-danger">*</span> </label>
+                    <input type="text" name="country_en"  class="form-control" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Country Bangla<span class="text-danger">*</span> </label>
+                    <input type="text" name="country_bn"  class="form-control" required>
+                  </div>
+
+                  <div class="form-group">
                     <label>Logo<span class="text-danger">*</span> </label>
                     <input type="file" name="logo"  class="form-control">
                   </div>

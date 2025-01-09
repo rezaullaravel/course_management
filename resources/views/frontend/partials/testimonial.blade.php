@@ -86,9 +86,9 @@
                                     </p>
                                     <p class="p-12">
                                         @if (session()->get('lang') == 'bangla')
-                                            {{ $row->profession_bn }}
+                                            {{ $row->country_bn }}
                                         @else
-                                            {{ $row->profession_en }}
+                                            {{ $row->country_en }}
                                         @endif
                                     </p>
                                 </div>

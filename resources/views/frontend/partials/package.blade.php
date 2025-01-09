@@ -318,8 +318,9 @@
                             </div>
                         @endif
 
-                        @if (session()->get('lang') == 'english')
-                            <h5>Enroll now for three free classes</h5>
+                        @if (session()->get('lang') == 'bangla')
+                        @else
+                        <h5>Enroll now for three free classes</h5>
                         @endif
 
 
@@ -339,9 +340,18 @@
                                 Enrole For Free
                             </button>
                         @endif
-                        <button class="btn btn-p-18 btn-primary rounded-pill">
+
+                        @if (session()->get('lang') == 'bangla')
+                        <a href="{{ route('package.checkout', $package->id) }}" class="btn btn-p-18 btn-primary rounded-pill">
+                            <img src="{{ asset('/') }}frontend/images/arrow.svg" alt="" />
+                        </a>
+                        @else
+                        <button data-bs-toggle="modal"
+                        data-bs-target="#exampleModal" class="btn btn-p-18 btn-primary rounded-pill">
                             <img src="{{ asset('/') }}frontend/images/arrow.svg" alt="" />
                         </button>
+                        @endif
+
                     </div>
                 </div>
             </div>
@@ -382,7 +392,7 @@
                 </div>
                 <div class="modal-body">
                     <!-- First Form -->
-                    <div id="formStep1" class="card border-none padding-40 gap-32 mx-w-fit">
+                    <div id="formStep1" class="card border-none padding-40 gap-32">
                         <h5 class="text-center">Personal details</h5>
                         <div class="gap-24">
                             <!-- Name -->
@@ -548,7 +558,8 @@
                 </div>
             </div>
         </div>
-        <!--modal end-->
+    </div>
+    <!--modal end-->
 
 
 

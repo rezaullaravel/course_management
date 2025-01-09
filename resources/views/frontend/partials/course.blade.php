@@ -224,9 +224,9 @@
 
 
             </a>
-            <button class="btn btn-p-18 btn-primary rounded-pill">
+            <a href="{{ route('all.course') }}"  class="btn btn-p-18 btn-primary rounded-pill">
                 <img src="{{ asset('/') }}frontend/images/arrow.svg" alt="" />
-            </button>
+            </a>
         </div>
 
     </div>

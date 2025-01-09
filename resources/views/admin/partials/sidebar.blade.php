@@ -5,7 +5,10 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{ asset('/') }}backend/dist/img/user2-160x160.jpg" class="img-circle elevation-2"
+                @php
+                    $user = Auth::user();
+                @endphp
+                <img src="{{ $user->image ? asset($user->image) : asset('backend/dist/img/avatar5.png') }}" class="img-circle elevation-2"
                     alt="User Image">
             </div>
             <div class="info">
@@ -318,6 +321,20 @@
                 @endif
                 {{-- newsletter --}}
 
+                {{-- english site enrolement  --}}
+                @if (auth()->user()->can('english-site-enrolment-view'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.enrolment.index') }}"
+                            class="nav-link {{ request()->is('admin/enrolment-list*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-chart-pie"></i>
+                            <p>
+                                Enrolement English Site
+                            </p>
+                        </a>
+                    </li>
+                @endif
+                {{-- english site enrolement  --}}
+
                 {{-- course --}}
                 {{-- @if (auth()->user()->can('view-course-category') || auth()->user()->can('view-course'))
                     <li class="nav-item {{ request()->is('admin/course*') ? 'menu-open' : '' }}">
@@ -356,14 +373,37 @@
                 {{-- course --}}
 
                 {{-- setting --}}
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
+                @if (auth()->user()->can('setting'))
+                <li class="nav-item {{ request()->is('admin/profile*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is('admin/profile*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
                             Setting
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
+                    @if (auth()->user()->can('setting.profile'))
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.profile.view') }}" class="nav-link {{ request()->is('admin/profile-view') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Profile</p>
+                            </a>
+                        </li>
+                    </ul>
+                    @endif
+
+                    {{-- @if (auth()->user()->can('setting.password'))
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.profile-password.change') }}" class="nav-link {{ request()->is('admin/profile-password-change') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Password Change</p>
+                            </a>
+                        </li>
+                    </ul>
+                    @endif --}}
+
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('user.logout') }}" class="nav-link">
@@ -373,6 +413,7 @@
                         </li>
                     </ul>
                 </li>
+                @endif
                 {{-- setting --}}
             </ul>
         </nav>

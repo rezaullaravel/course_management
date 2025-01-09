@@ -773,7 +773,8 @@
                                 {{-- course offer price show --}}
 
                               </p>
-                              @if (session()->get('lang') == 'english')
+                              @if (session()->get('lang') == 'bangla')
+                              @else
                               <h5>Enroll now for three free classes</h5>
                               @endif
 
@@ -788,9 +789,18 @@
                                         Enrole Now
                                     </button>
                                 @endif
-                                <button class="btn btn-p-18 btn-primary rounded-pill">
+
+                                @if (session()->get('lang') == 'bangla')
+                                <a href="{{ route('checkout',$course->id) }}" class="btn btn-p-18 btn-primary rounded-pill">
+                                    <img src="{{ asset('/') }}frontend/images/arrow.svg" alt="" />
+                                </a>
+                                @else
+                                <button data-bs-toggle="modal"
+                                data-bs-target="#myModal" class="btn btn-p-18 btn-primary rounded-pill">
                                     <img src="{{ asset('/') }}frontend/images/arrow.svg" alt="" />
                                 </button>
+                                @endif
+
                             </div>
                         </div>
                         <!-- Course teacher -->
@@ -833,9 +843,9 @@
                                         View All Course
                                     @endif
                                 </a>
-                                <button class="btn btn-p-18 btn-outline-success rounded-pill">
+                                <a href="{{ route('all.course') }}" class="btn btn-p-18 btn-outline-success rounded-pill">
                                     <img src="{{ asset('/') }}frontend/images/i-arrow-primary.svg" alt="" />
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -972,9 +982,9 @@
                         See All Courses
                     @endif
                 </a>
-                <button class="btn btn-p-18 btn-primary rounded-pill">
+                <a href="{{ route('all.course') }}" class="btn btn-p-18 btn-primary rounded-pill">
                     <img src="{{ asset('/') }}frontend/images/arrow.svg" alt="" />
-                </button>
+                </a>
             </div>
         </div>
     </section>
@@ -1163,6 +1173,7 @@
                 </div>
             </div>
         </div>
+    </div>
         <!--modal end-->
 <!-- Include required scripts -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

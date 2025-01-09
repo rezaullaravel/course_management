@@ -146,9 +146,9 @@
                     <a href="{{ url('/login') }}" class="btn btn-outline-success rounded-pill">
 
                         @if (session()->get('lang') == 'bangla')
-                            লগিন করুন
+                            লগিন/সাইন আপ
                         @else
-                            Log In
+                            Log In/SignUp
                         @endif
                     </a>
                     @endif

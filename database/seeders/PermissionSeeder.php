@@ -73,6 +73,10 @@ class PermissionSeeder extends Seeder
             'why-studyus-edit',
             'why-studyus-delete',
             'join-us-view',
+            'english-site-enrolment-view',
+            'setting',
+            'setting.profile',
+            'setting.password',
          ];
 
          foreach ($permissions as $permission) {

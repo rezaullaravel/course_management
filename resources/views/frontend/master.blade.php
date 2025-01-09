@@ -18,19 +18,23 @@
 
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}" />
 
+    {{-- favicon --}}
+    <link rel="icon" sizes="500x500" type="image/x-icon" href="{{ asset('/') }}frontend/images/favicon-32x32.png">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <title> @yield('title') </title>
     <style>
         .whatsapp-chat {
             bottom: 10px;
-            left: 10px;
+            right: 10px;
             position: fixed;
         }
     </style>
 </head>
 
 <body class="">
+    @include('frontend.partials.top_header')
     @include('frontend.partials.header')
 
     @yield('content')
@@ -110,7 +114,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!--Start of Tawk.to Script-->
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         var Tawk_API = Tawk_API || {},
             Tawk_LoadStart = new Date();
         (function() {
@@ -122,7 +126,7 @@
             s1.setAttribute('crossorigin', '*');
             s0.parentNode.insertBefore(s1, s0);
         })();
-    </script>
+    </script> --}}
     <!--End of Tawk.to Script-->
 
     {{-- ajax setup --}}

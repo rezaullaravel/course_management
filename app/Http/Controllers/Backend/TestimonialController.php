@@ -62,6 +62,8 @@ class TestimonialController extends Controller implements HasMiddleware
         $testimonial->name_bn = $request->name_bn;
         $testimonial->profession_en = $request->profession_en;
         $testimonial->profession_bn = $request->profession_bn;
+        $testimonial->country_en = $request->country_en;
+        $testimonial->country_bn = $request->country_bn;
         $testimonial->logo = $logoPath;
         $testimonial->image = $imagePath;
         $testimonial->save();
@@ -109,6 +111,8 @@ class TestimonialController extends Controller implements HasMiddleware
         $testimonial->name_bn = $request->name_bn;
         $testimonial->profession_en = $request->profession_en;
         $testimonial->profession_bn = $request->profession_bn;
+        $testimonial->country_en = $request->country_en;
+        $testimonial->country_bn = $request->country_bn;
         if(!empty($request->logo)){
             $testimonial->logo = $logoPath;
         }

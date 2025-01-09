@@ -58,16 +58,19 @@
             </p>
 
             <div class="d-flex margin-auto">
-                @if (session()->get('lang') == 'english')
-                    <button class="btn btn-lg btn-primary rounded-pill" data-bs-toggle="modal"
+                @if (session()->get('lang') == 'bangla')
+                @else
+                <button class="btn btn-lg btn-primary rounded-pill" data-bs-toggle="modal"
                         data-bs-target="#insertModal">
                         Enroll For Free Class
                     </button>
                 @endif
-                @if (session()->get('lang') == 'english')
-                    <button class="btn btn-p-18 btn-primary rounded-pill">
-                        <img src="{{ asset('/') }}frontend/images/arrow.svg" alt="" />
-                    </button>
+                @if (session()->get('lang') == 'bangla')
+                @else
+                <button data-bs-toggle="modal"
+                data-bs-target="#insertModal" class="btn btn-p-18 btn-primary rounded-pill">
+                    <img src="{{ asset('/') }}frontend/images/arrow.svg" alt="" />
+                </button>
                 @endif
             </div>
         </div>

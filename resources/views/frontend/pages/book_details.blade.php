@@ -87,7 +87,7 @@
                     @if (!empty($book->topic1_en))
                         <div class="gap-12">
                             <div class="gap-12 flex-row align-items-center fact" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse4">
+                                data-bs-target="#rcollapse1" aria-expanded="false" aria-controls="rcollapse1">
                                 <img src="{{ asset('/') }}frontend/images/i-arrow-block-right.svg" alt="" />
                                 <p class="p-18 color-text fw-medium">
                                     @if (session()->get('lang') == 'bangla')
@@ -97,7 +97,7 @@
                                     @endif
                                 </p>
                             </div>
-                            <div id="collapse1" data-bs-parent="#Information">
+                            <div id="rcollapse1" data-bs-parent="#Information">
                                 @if (session()->get('lang') == 'bangla')
                                     {!! $book->description1_bn !!}
                                 @else
@@ -342,14 +342,17 @@
                     {{-- book  price show end--}}
                     @if ($book->paid_status == 'paid')
                         @if (session()->get('lang') == 'bangla')
-                            <a href="{{ route('book.checkout', $book->id) }}" class="btn btn-lg bg-color-button">
-                                অর্ডার করুন
-                            </a>
+
+                                <a href="{{ route('book.checkout', $book->id) }}" class="btn btn-lg bg-color-button">
+                                    অর্ডার করুন
+                                </a>
                         @else
-                            <a href="" class="btn btn-lg bg-color-button">
-                                Order Now
-                                {{-- <img src="{{ asset('/') }}frontend/images/download-black.svg" alt="" /> --}}
-                            </a>
+
+                                <a href="" class="btn btn-lg bg-color-button">
+                                    Order Now
+                                    {{-- <img src="{{ asset('/') }}frontend/images/download-black.svg" alt="" /> --}}
+                                </a>
+
                         @endif
                     @else
                         <a href="{{ route('ebook.read', [
@@ -394,7 +397,7 @@
                         @if (!empty($book->footer_topic1_en))
                             <div class="gap-12">
                                 <div class="gap-12 flex-row align-items-center fact" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
+                                    data-bs-toggle="footCollapse" data-bs-target="#collapseOne" aria-expanded="false"
                                     aria-controls="collapseOne">
                                     <img src="{{ asset('/') }}frontend/images/i-arrow-block-right.svg"
                                         alt="" />
@@ -705,9 +708,9 @@
                         See All Courses
                     @endif
                 </a>
-                <button class="btn btn-p-18 btn-primary rounded-pill">
+                <a href="{{ route('all.course') }}"  class="btn btn-p-18 btn-primary rounded-pill">
                     <img src="{{ asset('/') }}frontend/images/arrow.svg" alt="" />
-                </button>
+                </a>
             </div>
         </div>
     </section>
@@ -809,9 +812,9 @@
                         View All Books
                     @endif
                 </a>
-                <button class="btn btn-p-18 btn-primary rounded-pill">
+                <a href="{{ route('all.book') }}" class="btn btn-p-18 btn-primary rounded-pill">
                     <img src="{{ asset('/') }}frontend/images/arrow.svg" alt="" />
-                </button>
+                </a>
             </div>
         </div>
     </section>
